@@ -35,6 +35,29 @@ class TestMaksukortti(unittest.TestCase):
 
         self.assertEqual(self.kortti.saldo_euroina(), 150.0)
 
+    def test_syo_maukkaasti_ei_vie_saldoa_negatiiviseksi(self):
+        kortti = Maksukortti(200)
+        kortti.syo_maukkaasti()
+
+        self.assertEqual(kortti.saldo_euroina(), 2.0)
+
+    def test_negatiivinen_lataaminen(self):
+        self.kortti.lataa_rahaa(-1)
+
+        self.assertEqual(self.kortti.saldo_euroina(), 10.0)
+    
+    def test_edullinen_tasaraha(self):
+        kortti = Maksukortti(250)
+        kortti.syo_edullisesti()
+
+        self.assertEqual(kortti.saldo_euroina(), 0)
+    
+    def test_maukas_tasraha(self):
+        kortti = Maksukortti(400)
+        kortti.syo_maukkaasti()
+
+        self.assertEqual(kortti.saldo_euroina(), 0)
+
 
 
 
