@@ -19,7 +19,7 @@ The software will consist of two views. The first view will be for character cre
 - Users can save characters to a file
 - Users can view characters created through the same session (or import them from a file)
 
-### Further development ideas
+## Further development ideas
 
 - Users can search characters based on name
 - Users can add characters as their favorite
