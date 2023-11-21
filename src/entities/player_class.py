@@ -1,20 +1,29 @@
-# Main class
+"""This module represents the PlayerClass class and its subclasses"""
+
+
 class PlayerClass:
+    """Represents a player class"""
+
     def __init__(self, name: str, skills: list, class_features: list) -> None:
+        """Class constructor"""
         self.name = name
         self.skills = skills
         self.class_features = class_features
 
     def __str__(self) -> str:
+        """Returns PlayerClass as a string, mostly for testing purposes"""
         skill_lines = "\n".join(self.skills)
         class_feature_lines = "\n".join(self.class_features)
 
         return f"{self.name}:\n{skill_lines}\n{class_feature_lines}\n\n"
 
 
-# Subclasses
+# PlayerClass subclasses
 class Barbarian(PlayerClass):
+    """Represents the barbarian class"""
+
     def __init__(self) -> None:
+        """Class constructor"""
         self.name = "Warrior"
         self.skills = ["Rage", "Unarmored Defense"]
         self.class_features = [
