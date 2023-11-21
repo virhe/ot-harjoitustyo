@@ -3,7 +3,7 @@ from entities.player_class import Barbarian
 from entities.race import Human
 
 
-def main():
+def start():
     pclass = Barbarian()
     prace = Human()
 
