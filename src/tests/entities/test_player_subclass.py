@@ -1,6 +1,6 @@
 import unittest
 
-from src.entities.player_class import PlayerClass
+from entities.player_class import PlayerClass
 
 
 class TestPlayerClass(unittest.TestCase):
