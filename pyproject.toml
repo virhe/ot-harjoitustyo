@@ -8,6 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
 pyside6 = "^6.6.0"
+invoke = "^2.2.0"
 
 
 [tool.poetry.group.dev.dependencies]
