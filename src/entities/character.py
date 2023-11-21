@@ -9,6 +9,8 @@ class Character:
         self.race = race
 
     def __str__(self) -> str:
-        character_description = f"{self.name} | {self.player_class.name} | {self.race.name}\n\n"
+        character_description = (
+            f"{self.name} | {self.player_class.name} | {self.race.name}\n\n"
+        )
 
         return character_description + str(self.player_class) + str(self.race)

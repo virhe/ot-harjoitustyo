@@ -8,4 +8,3 @@ prace = Human()
 player_character = Character("Example", pclass, prace)
 
 print(player_character)
-

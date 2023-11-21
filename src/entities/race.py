@@ -8,6 +8,7 @@ class Race:
         trait_lines = "\n".join(self.traits)
         return f"{self.name}:\n{trait_lines}"
 
+
 # Subraces
 class Human(Race):
     def __init__(self) -> None:
