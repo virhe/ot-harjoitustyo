@@ -1,6 +1,6 @@
 from entities.character import Character
-from entities.player_class import *
-from entities.race import *
+from entities.player_class import Barbarian
+from entities.race import Human
 
 pclass = Barbarian()
 prace = Human()
