@@ -2,8 +2,7 @@
 
 |  day  | time |                              activities                               |
 |:-----:|:----:|:---------------------------------------------------------------------:|
-| 20.11 |  2   |                          Learning about PyQT                          |
-| 21.11 |  4   | Planning and implementing file structure, implementing basic entities |
+| 26.3  |  1   |        Planning and writing requirement specification                 |
 |       |      |                                                                       |
 |       |      |                                                                       |
 |       |      |                                                                       |
@@ -13,4 +12,5 @@
 |       |      |                                                                       |
 |       |      |                                                                       |
 |       |      |                                                                       |
-| total |  6   |                                                                       | 
+|       |      |                                                                       |
+| total |  1   |                                                                       | 
