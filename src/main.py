@@ -1,8 +1,8 @@
 import sys
 import pygame
 
-from src.classes.player import Player
-from src.classes.wall import Wall
+from classes.player import Player
+from classes.wall import Wall
 
 pygame.init()
 
