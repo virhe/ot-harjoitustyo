@@ -1,6 +1,5 @@
 # Ohjelmistotekniikka, harjoitustyö
 ### Exercises and project for the course "Intermediate Studies Project: Software Development Methods" - University of Helsinki
-A simple platforming game.
 
 ## Documentation
 - [Requirement specification](./documentation/requirement%20specification.md)
