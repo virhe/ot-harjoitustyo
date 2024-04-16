@@ -2,12 +2,10 @@ import tkinter as tk
 
 
 class MainWindow:
-    def __init__(self, root, user_service):
+    def __init__(self, root):
         self.root = root
         self.root.title("Depysit")
         self.root.geometry("800x600")
-
-        self.user_service = user_service
 
         self.create_ui()
 

@@ -3,11 +3,13 @@ from tkinter import Toplevel, messagebox
 
 
 class ComboForm(Toplevel):
-    def __init__(self, root, user_service):
+    def __init__(self, root, user_service, success):
         super().__init__(root)
         self.user_service = user_service
         self.title("Login/Register")
         self.geometry("300x300")
+
+        self.success = success
 
         tk.Label(self, text="Username:").pack()
         self.username = tk.Entry(self)
@@ -30,6 +32,7 @@ class ComboForm(Toplevel):
         if self.user_service.login(username, password):
             messagebox.showinfo("Login Successful", "You are now logged in.")
             self.destroy()
+            self.success()
         else:
             messagebox.showerror("Login Failed", "Invalid Username or Password.")
 
@@ -41,5 +44,6 @@ class ComboForm(Toplevel):
             self.user_service.register(username, password)
             messagebox.showinfo("Registration Successful", "You are now registered.")
             self.destroy()
+            self.success()
         except Exception as e:
             messagebox.showerror("Registration Failed", str(e))

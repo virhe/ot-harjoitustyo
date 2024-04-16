@@ -1,6 +1,7 @@
 import tkinter as tk
 
 from src.gui.form import ComboForm
+from src.gui.window import MainWindow
 from src.repositories.entry_repository import EntryRepository
 from src.repositories.user_repository import UserRepository
 from src.services.user_service import UserService
@@ -18,9 +19,15 @@ def main():
     entry_service = EntryService(entry_repository)
 
     root = tk.Tk()
-    form = ComboForm(root, user_service)
+    root.withdraw()
 
-    root.mainloop()
+    def success():
+        root.deiconify()
+        app = MainWindow(root)
+        root.mainloop()
+
+    form = ComboForm(root, user_service, success)
+    form.mainloop()
 
 
 if __name__ == "__main__":
