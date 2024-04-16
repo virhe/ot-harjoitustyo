@@ -18,6 +18,9 @@ class UserService:
         if self.user_repository.find_user_name(username):
             raise Exception("User with given username already exists")
 
+        if len(username) < 3 or len(password) < 3:
+            raise Exception("Username and password must be at least 3 characters long")
+
         user = User(username=username, password=hash_pw(password))
         self.user_repository.add_user(user)
 
