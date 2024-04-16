@@ -1,4 +1,5 @@
 import tkinter as tk
+
 from tkinter import Toplevel, messagebox
 
 
@@ -42,11 +43,11 @@ class ComboForm(Toplevel):
         username = self.username.get()
         password = self.password.get()
 
-
         try:
-            self.user_service.register(username, password)
-            messagebox.showinfo("Registration Successful", "You are now registered.")
-            self.destroy()
-            self.success()
+            user_id = self.user_service.register(username, password)
+            if user_id:
+                messagebox.showinfo("Registration Successful", "You are now registered.")
+                self.destroy()
+                self.success(user_id)
         except Exception as e:
             messagebox.showerror("Registration Failed", str(e))

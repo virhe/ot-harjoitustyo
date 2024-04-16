@@ -24,6 +24,8 @@ class UserService:
         user = User(username=username, password=hash_pw(password))
         self.user_repository.add_user(user)
 
+        return user.id
+
 
 def hash_pw(password):
     return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
