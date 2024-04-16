@@ -11,6 +11,7 @@ class EntryForm(Toplevel):
         self.title("Add Entry")
         self.geometry("400x400")
 
+        # Fields for Entry
         tk.Label(self, text="Amount:").pack()
         self.amount = tk.Entry(self)
         self.amount.pack()
@@ -32,6 +33,7 @@ class EntryForm(Toplevel):
 
     def submit(self):
         try:
+            # Attempt adding new entry
             amount = float(self.amount.get())
             category = self.category.get()
             date = datetime.strptime(self.date.get(), "%d-%m-%Y").date()
@@ -41,5 +43,6 @@ class EntryForm(Toplevel):
                 self.user_id, amount, category, date, description)
             messagebox.showinfo("Success", "Entry added successfully")
             self.destroy()
+        # pylint WOULD complain about this, but gui is omitted :)
         except Exception as e:
             messagebox.showinfo("Error", str(e))

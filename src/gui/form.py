@@ -12,6 +12,7 @@ class ComboForm(Toplevel):
 
         self.success = success
 
+        # Shared fields for login and register
         tk.Label(self, text="Username:").pack()
         self.username = tk.Entry(self)
         self.username.pack()
@@ -46,11 +47,13 @@ class ComboForm(Toplevel):
         password = self.password.get()
 
         try:
+            # Try registering new user
             user_id = self.user_service.register(username, password)
             if user_id:
                 messagebox.showinfo("Registration Successful",
                                     "You are now registered.")
                 self.destroy()
                 self.success(user_id)
+        # Broad exception, but pylint omitted file
         except Exception as e:
             messagebox.showerror("Registration Failed", str(e))

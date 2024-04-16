@@ -2,6 +2,13 @@ from src.entities.entry import Entry
 
 
 class EntryService:
+    """
+    Responsible for managing all entries.
+
+    Attributes:
+        entry_repository: Handles database operations for all entries.
+    """
+
     def __init__(self, entry_repository):
         self.entry_repository = entry_repository
 

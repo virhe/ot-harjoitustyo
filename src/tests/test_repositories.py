@@ -22,11 +22,11 @@ def test_entry_repository_add(session):
     session.add(user)
     session.commit()
 
-    entry = Entry(user_id=user.id, amount=2.50, category="Bread", date=date.today(), description="I was very hungry")
+    entry = Entry(user_id=user.id, amount=2.50, category="Bread",
+                  date=date.today(), description="I was very hungry")
 
     entry_repository = EntryRepository(session)
     entry_repository.add_entry(entry)
 
     assert entry.id is not None
     assert entry.user == user
-

@@ -17,7 +17,8 @@ class MainWindow:
     def create_ui(self):
         tk.Label(self.root, text="Welcome to Depysit").pack()
 
-        # Has to be instance variable for entry_form()
+        # Has to be instance variable for entry_form() and refresh()
+        # Fills the whole window with a treeview, with buttons at the bottom
         self.tree = ttk.Treeview(self.root)
         self.tree["columns"] = (
             "ID", "Amount", "Category", "Date", "Description")
@@ -37,10 +38,12 @@ class MainWindow:
 
         self.tree.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
+        # Entry button
         add_entry = tk.Button(self.root, text="Add Entry",
                               command=self.entry_form)
         add_entry.pack()
 
+        # Refresh button
         refresh_button = tk.Button(
             self.root, text="Refresh", command=self.refresh)
         refresh_button.pack()
@@ -48,12 +51,14 @@ class MainWindow:
         self.refresh()
 
     def entry_form(self):
-        entry_form = EntryForm(self.root, self.entry_service, self.user_id)
+        EntryForm(self.root, self.entry_service, self.user_id)
 
     def refresh(self):
+        # There might be a better way?
         for entry in self.tree.get_children():
             self.tree.delete(entry)
 
+        # Once again, there is probably a way to fill the tree without a loop
         entries = self.entry_service.entries_by_user(self.user_id)
         for entry in entries:
             self.tree.insert("", "end", values=(entry.id, entry.amount,

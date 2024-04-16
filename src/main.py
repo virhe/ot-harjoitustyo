@@ -19,9 +19,12 @@ def main():
     entry_service = EntryService(entry_repository)
 
     root = tk.Tk()
+    # Hide main window
     root.withdraw()
 
+    # On successful login or register
     def success(user_id):
+        # Show main window
         root.deiconify()
         MainWindow(root, entry_service, user_id)
         root.mainloop()

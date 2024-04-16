@@ -4,6 +4,13 @@ from src.entities.user import User
 
 
 class UserService:
+    """
+    Responsible for managing all users.
+
+    Attributes:
+        user_repository: Handles database operations for all users.
+    """
+
     def __init__(self, user_repository):
         self.user_repository = user_repository
 
@@ -32,6 +39,7 @@ def hash_pw(password):
     return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
 
 
+# Custom errors so pylint won't complain about "Exception"
 class UsernameTakenError(Exception):
     pass
 
