@@ -23,7 +23,7 @@ def main():
 
     def success():
         root.deiconify()
-        app = MainWindow(root)
+        app = MainWindow(root, entry_service, 1)  # temp user_id
         root.mainloop()
 
     form = ComboForm(root, user_service, success)
