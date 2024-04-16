@@ -1,16 +1,28 @@
+from sqlalchemy import Column, Integer, Float, String, ForeignKey, Date, Text
+from sqlalchemy.orm import relationship
+from .base import Base
 
-class Entry:
-    """ A class to represent a budgeting Entry
 
-     Attributes:
-         amount (float): The amount of currency
-         category (str): The category of the entry
-         description (str): The description of the entry
-         date (str): The date of the entry
+class Entry(Base):
+    """
+    Represents a financial entry.
+
+    Fields:
+    - id (Integer)
+    - user_id (Integer)
+    - amount (Float)
+    - category (String)
+    - date (Date)
+    - description (Text)
     """
 
-    def __init__(self, amount: float, category: str, description: str, date: str) -> None:
-        self.amount: float = amount
-        self.category: str = category
-        self.description: str = description
-        self.date: str = date
+    __tablename__ = "entries"
+
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    amount = Column(Float, nullable=False)
+    category = Column(String, nullable=False)
+    date = Column(Date, nullable=False)
+    description = Column(Text)
+
+    user = relationship("User", back_populates="entries")
