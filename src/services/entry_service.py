@@ -1,3 +1,16 @@
+from src.entities.entry import Entry
+
+
 class EntryService:
     def __init__(self, entry_repository):
         self.entry_repository = entry_repository
+
+    def add_entry(self, user_id, amount, category, date, description):
+        entry = Entry(user_id=user_id, amount=amount, category=category, date=date, description=description)
+        self.entry_repository.add_entry(entry)
+
+    def delete_entry(self, entry_id):
+        self.entry_repository.delete_entry(entry_id)
+
+    def entries_by_user(self, user_id):
+        self.entry_repository.get_user_entries(user_id)
