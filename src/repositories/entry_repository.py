@@ -18,3 +18,6 @@ class EntryRepository:
     def get_entry_id(self, entry_id):
         entry = self.session.query(Entry).filter_by(id=entry_id).first()
         return entry
+
+    def get_user_entries(self, user_id):
+        return self.session.query(Entry).filter_by(user_id=user_id).all()
