@@ -19,7 +19,8 @@ class MainWindow:
 
         # Has to be instance variable for entry_form()
         self.tree = ttk.Treeview(self.root)
-        self.tree["columns"] = ("ID", "Amount", "Category", "Date", "Description")
+        self.tree["columns"] = (
+            "ID", "Amount", "Category", "Date", "Description")
         self.tree.column("#0", width=0, stretch=tk.NO)
         self.tree.column("ID", anchor=tk.W, width=40)
         self.tree.column("Amount", anchor=tk.W, width=80)
@@ -36,10 +37,12 @@ class MainWindow:
 
         self.tree.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
-        add_entry = tk.Button(self.root, text="Add Entry", command=self.entry_form)
+        add_entry = tk.Button(self.root, text="Add Entry",
+                              command=self.entry_form)
         add_entry.pack()
 
-        refresh_button = tk.Button(self.root, text="Refresh", command=self.refresh)
+        refresh_button = tk.Button(
+            self.root, text="Refresh", command=self.refresh)
         refresh_button.pack()
 
         self.refresh()

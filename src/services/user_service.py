@@ -16,10 +16,11 @@ class UserService:
 
     def register(self, username, password):
         if self.user_repository.find_user_name(username):
-            raise Exception("User with given username already exists")
+            raise UsernameTakenError("User with given username already exists")
 
         if len(username) < 3 or len(password) < 3:
-            raise Exception("Username and password must be at least 3 characters long")
+            raise InvalidUsernameOrPassword(
+                "Username and password must be at least 3 characters long")
 
         user = User(username=username, password=hash_pw(password))
         self.user_repository.add_user(user)
@@ -29,3 +30,11 @@ class UserService:
 
 def hash_pw(password):
     return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+
+
+class UsernameTakenError(Exception):
+    pass
+
+
+class InvalidUsernameOrPassword(Exception):
+    pass

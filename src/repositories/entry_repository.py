@@ -20,8 +20,8 @@ class EntryRepository:
         return entry
 
     def get_user_entries(self, user_id):
-        try:
-            return self.session.query(Entry).filter_by(user_id=user_id).all()
-        except Exception as e:
-            print(e)
+        query = self.session.query(Entry).filter_by(user_id=user_id).all()
+        if query is None:
             return []
+
+        return query

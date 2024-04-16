@@ -23,7 +23,8 @@ class ComboForm(Toplevel):
         login_button = tk.Button(self, text="Login", command=self.login)
         login_button.pack()
 
-        register_button = tk.Button(self, text="Register", command=self.register)
+        register_button = tk.Button(
+            self, text="Register", command=self.register)
         register_button.pack()
 
     def login(self):
@@ -37,7 +38,8 @@ class ComboForm(Toplevel):
             self.destroy()
             self.success(user_id)
         else:
-            messagebox.showerror("Login Failed", "Invalid Username or Password.")
+            messagebox.showerror(
+                "Login Failed", "Invalid Username or Password.")
 
     def register(self):
         username = self.username.get()
@@ -46,7 +48,8 @@ class ComboForm(Toplevel):
         try:
             user_id = self.user_service.register(username, password)
             if user_id:
-                messagebox.showinfo("Registration Successful", "You are now registered.")
+                messagebox.showinfo("Registration Successful",
+                                    "You are now registered.")
                 self.destroy()
                 self.success(user_id)
         except Exception as e:

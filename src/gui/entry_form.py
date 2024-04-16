@@ -37,7 +37,8 @@ class EntryForm(Toplevel):
             date = datetime.strptime(self.date.get(), "%d-%m-%Y").date()
             description = self.description.get()
 
-            self.entry_service.add_entry(self.user_id, amount, category, date, description)
+            self.entry_service.add_entry(
+                self.user_id, amount, category, date, description)
             messagebox.showinfo("Success", "Entry added successfully")
             self.destroy()
         except Exception as e:
