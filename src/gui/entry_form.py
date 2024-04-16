@@ -41,4 +41,4 @@ class EntryForm(Toplevel):
             messagebox.showinfo("Success", "Entry added successfully")
             self.destroy()
         except Exception as e:
-            messagebox.showinfo("Error", e)
+            messagebox.showinfo("Error", str(e))
