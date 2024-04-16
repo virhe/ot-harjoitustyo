@@ -6,14 +6,14 @@ from src.repositories.entry_repository import EntryRepository
 from src.repositories.user_repository import UserRepository
 from src.services.user_service import UserService
 from src.services.entry_service import EntryService
-from src.database import init_db
+from src.database import init_db, session
 
 
 def main():
     init_db()
 
-    user_repository = UserRepository()
-    entry_repository = EntryRepository()
+    user_repository = UserRepository(session)
+    entry_repository = EntryRepository(session)
 
     user_service = UserService(user_repository)
     entry_service = EntryService(entry_repository)
