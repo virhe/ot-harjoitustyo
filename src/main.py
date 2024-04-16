@@ -1,4 +1,9 @@
 import tkinter as tk
+import os
+import sys
+
+# ChatGPT generated, had issues with the terminal after developing in PyCharm.
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.gui.form import ComboForm
 from src.gui.window import MainWindow
