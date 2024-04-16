@@ -21,9 +21,9 @@ def main():
     root = tk.Tk()
     root.withdraw()
 
-    def success():
+    def success(user_id):
         root.deiconify()
-        app = MainWindow(root, entry_service, 1)  # temp user_id
+        app = MainWindow(root, entry_service, user_id)
         root.mainloop()
 
     form = ComboForm(root, user_service, success)

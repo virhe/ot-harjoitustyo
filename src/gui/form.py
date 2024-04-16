@@ -29,16 +29,19 @@ class ComboForm(Toplevel):
         username = self.username.get()
         password = self.password.get()
 
-        if self.user_service.login(username, password):
+        user_id = self.user_service.login(username, password)
+
+        if user_id:
             messagebox.showinfo("Login Successful", "You are now logged in.")
             self.destroy()
-            self.success()
+            self.success(user_id)
         else:
             messagebox.showerror("Login Failed", "Invalid Username or Password.")
 
     def register(self):
         username = self.username.get()
         password = self.password.get()
+
 
         try:
             self.user_service.register(username, password)

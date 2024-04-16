@@ -10,9 +10,9 @@ class UserService:
     def login(self, username, password):
         user = self.user_repository.find_user_name(username)
         if user and bcrypt.checkpw(password.encode("utf-8"), user.password.encode("utf-8")):
-            return True
+            return user.id
 
-        return False
+        return None
 
     def register(self, username, password):
         if self.user_repository.find_user_name(username):
