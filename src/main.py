@@ -5,6 +5,9 @@ import sys
 # ChatGPT generated, had issues with the terminal after developing in PyCharm.
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+# pylint: disable=wrong-import-position
+# Hopefully a reasonable reason to disable the warning in this case
+
 from src.gui.form import ComboForm
 from src.gui.window import MainWindow
 from src.repositories.entry_repository import EntryRepository
