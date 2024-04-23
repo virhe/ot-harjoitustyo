@@ -22,9 +22,9 @@ class UserRepository:
     #     self.session.delete(user)
     #     self.session.commit()
 
-    def find_user_id(self, user_id):
-        user = self.session.query(User).filter_by(id=user_id).first()
-        return user
+    # def find_user_id(self, user_id):
+    #     user = self.session.query(User).filter_by(id=user_id).first()
+    #     return user
 
     def find_user_name(self, username):
         user = self.session.query(User).filter_by(username=username).first()
