@@ -181,12 +181,18 @@ class MainWindow:
 
         for bar in bars:
             val = bar.get_height()
+
+            if val >= 0:
+                v_align = "top"
+            else:
+                v_align = "bottom"
+
             self.ax.text(
                 bar.get_x() + bar.get_width() / 2,
                 val,
                 "%d" % val,
                 ha="center",
-                va="top",
+                va=v_align,
                 rotation="vertical",
             )
 
