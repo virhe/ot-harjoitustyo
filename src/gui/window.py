@@ -88,9 +88,9 @@ class MainWindow:
         if self.months["values"]:
             self.months.set(self.months["values"][0])
 
-        update_button = tk.Button(graph_tab, text="Update", command=self.update_graph)
+        update_button = tk.Button(
+            graph_tab, text="Update", command=self.update_graph)
         update_button.pack()
-
 
     def entry_years(self):
         entries = self.entry_service.entries_by_user(self.user_id)
@@ -102,26 +102,32 @@ class MainWindow:
         month = self.months.current() + 1
 
         entries = self.entry_service.entries_by_user(self.user_id)
-        entries_on_date = [entry for entry in entries if entry.date.year == year and entry.date.month == month]
+        entries_on_date = [
+            entry for entry in entries if entry.date.year == year and entry.date.month == month]
 
         self.plot_graph(entries_on_date)
 
     def plot_graph(self, entries):
-        entries_on_date = defaultdict(float)
+        # ChatGPT generated line, had trouble with this.
+        entries_on_date = defaultdict(lambda: {'income': 0, 'expense': 0})
+
         for entry in entries:
-            entries_on_date[entry.date] += entry.amount
+            if entry.type == "Income":
+                entries_on_date[entry.date]["income"] += entry.amount
+            else:
+                entries_on_date[entry.date]["expense"] += entry.amount
 
         sorted_dates = sorted(entries_on_date.keys())
-        amounts = [entries_on_date[date] for date in sorted_dates]
+        net = [entries_on_date[date]["income"] -
+               entries_on_date[date]["expense"] for date in sorted_dates]
 
         self.ax.clear()
         self.ax.set_title("Total Income/Expenses for Selected Month")
         self.ax.set_xlabel("Day")
         self.ax.set_ylabel("Amount")
 
-        for date, amount in zip(sorted_dates, amounts):
-            self.ax.plot(date, amount, ".")
-            self.ax.annotate(amount, xy=(date, amount), xytext=(3, 3), textcoords="offset points")
+        color = ["green" if x >= 0 else "red" for x in net]
+        self.ax.bar(sorted_dates, net, color=color)
 
         self.ax.xaxis.set_major_locator(mdates.DayLocator(interval=1))
         self.ax.xaxis.set_major_formatter(mdates.DateFormatter("%d"))
