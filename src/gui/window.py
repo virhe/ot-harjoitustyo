@@ -173,11 +173,15 @@ class MainWindow:
         self.ax.set_ylabel("Amount")
 
         color = ["green" if x >= 0 else "red" for x in net]
-        self.ax.bar(sorted_dates, net, color=color)
+        bars = self.ax.bar(sorted_dates, net, color=color)
 
         self.ax.xaxis.set_major_locator(mdates.DayLocator(interval=1))
         self.ax.xaxis.set_major_formatter(mdates.DateFormatter("%d"))
         self.figure.autofmt_xdate()
+
+        for bar in bars:
+            val = bar.get_height()
+            self.ax.text(bar.get_x() + bar.get_width() / 2, val, "%d" % val, ha="center")
 
         self.canvas.draw()
 
