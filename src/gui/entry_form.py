@@ -33,16 +33,29 @@ class EntryForm(Toplevel):
 
     def submit(self):
         try:
-            # Attempt adding new entry
             amount = float(self.amount.get())
-            category = self.category.get()
-            date = datetime.strptime(self.date.get(), "%d-%m-%Y").date()
-            description = self.description.get()
+        except ValueError:
+            messagebox.showerror("Error", "Amount must be an integer.")
+            return
 
+        category = self.category.get()
+        if not category:
+            messagebox.showerror("Error", "Please choose a category.")
+            return
+
+        try:
+            date = datetime.strptime(self.date.get(), "%d-%m-%Y").date()
+        except ValueError:
+            messagebox.showerror("Error", "Date must be in the DD-MM-YYYY format.")
+            return
+
+        description = self.description.get()
+
+        try:
             self.entry_service.add_entry(
                 self.user_id, amount, category, date, description)
             messagebox.showinfo("Success", "Entry added successfully")
             self.destroy()
-        # pylint WOULD complain about this, but gui is omitted :)
+            # pylint WOULD complain about this, but gui is omitted :)
         except Exception as e:
             messagebox.showinfo("Error", str(e))
