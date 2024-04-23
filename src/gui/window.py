@@ -14,7 +14,7 @@ class MainWindow:
     Represents the main window.
 
     Attributes:
-    - root: tkinter root window
+    - root: Tkinter root window
     - entry_service: EntryService instance
     - user_id: current user id
     """

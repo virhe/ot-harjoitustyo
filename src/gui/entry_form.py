@@ -5,6 +5,15 @@ from tkcalendar import DateEntry
 
 
 class EntryForm(Toplevel):
+    """
+    Represents a form for adding entries
+
+    Attributes:
+    - entry_service = EntryService instance
+    - user_id = user id of current user
+    - on_entry_add = used to call on_entry_add() in window.py on successfully adding new entry
+    """
+
     def __init__(self, root, entry_service, user_id, on_entry_add=None):
         super().__init__(root)
         self.entry_service = entry_service
@@ -38,8 +47,9 @@ class EntryForm(Toplevel):
         submit = tk.Button(self, text="Submit", command=self.submit)
         submit.pack()
 
+    # Handles submitting the values
     def submit(self):
-        # Default value, no validation needed
+        # Has a default value, no validation needed
         type = self.type.get()
 
         try:

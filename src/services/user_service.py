@@ -14,15 +14,17 @@ class UserService:
     def __init__(self, user_repository):
         self.user_repository = user_repository
 
+    # Handles user login
     def login(self, username, password):
         user = self.user_repository.find_user_name(username)
         if user and bcrypt.checkpw(
-            password.encode("utf-8"), user.password.encode("utf-8")
+                password.encode("utf-8"), user.password.encode("utf-8")
         ):
             return user.id
 
         return None
 
+    # Handles user registration
     def register(self, username, password):
         if self.user_repository.find_user_name(username):
             raise UsernameTakenError("User with given username already exists")
@@ -38,6 +40,8 @@ class UserService:
         return user.id
 
 
+# Hashes the password
+# Not a course requirement, but good practice
 def hash_pw(password):
     return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
 

@@ -13,6 +13,7 @@ class UserRepository:
     def __init__(self, session):
         self.session = session
 
+    # Adds user to database
     def add_user(self, user):
         self.session.add(user)
         self.session.commit()
@@ -26,6 +27,7 @@ class UserRepository:
     #     user = self.session.query(User).filter_by(id=user_id).first()
     #     return user
 
+    # Return user based on given username
     def find_user_name(self, username):
         user = self.session.query(User).filter_by(username=username).first()
         return user

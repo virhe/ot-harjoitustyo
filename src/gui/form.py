@@ -4,6 +4,14 @@ from tkinter import Toplevel, messagebox
 
 
 class ComboForm(Toplevel):
+    """
+    Represents a login/register form.
+
+    Attributes:
+    - user_service = UserService instance
+    - success = Used to call success() in main.py
+    """
+
     def __init__(self, root, user_service, success):
         super().__init__(root)
         self.user_service = user_service
@@ -27,6 +35,7 @@ class ComboForm(Toplevel):
         register_button = tk.Button(self, text="Register", command=self.register)
         register_button.pack()
 
+    # Handles logging in
     def login(self):
         username = self.username.get()
         password = self.password.get()
@@ -40,6 +49,7 @@ class ComboForm(Toplevel):
         else:
             messagebox.showerror("Login Failed", "Invalid Username or Password.")
 
+    # Handles registering
     def register(self):
         username = self.username.get()
         password = self.password.get()
