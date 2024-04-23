@@ -32,11 +32,23 @@ def test_get_user_entries(session, entry_repository):
     session.add(user)
     session.commit()
 
-    entry = Entry(user_id=user.id, type="Income", amount=20, category="Sales",
-                  date=date.today(), description="")
+    entry = Entry(
+        user_id=user.id,
+        type="Income",
+        amount=20,
+        category="Sales",
+        date=date.today(),
+        description="",
+    )
 
-    entry2 = Entry(user_id=user.id, type="Expense", amount=13, category="Candies",
-                   date=date.today(), description="Yum")
+    entry2 = Entry(
+        user_id=user.id,
+        type="Expense",
+        amount=13,
+        category="Candies",
+        date=date.today(),
+        description="Yum",
+    )
 
     session.add(entry)
     session.add(entry2)
@@ -65,8 +77,14 @@ def test_entry_repository_add(session, entry_repository):
     session.add(user)
     session.commit()
 
-    entry = Entry(user_id=user.id, type="Expense", amount=2.50, category="Bread",
-                  date=date.today(), description="I was very hungry")
+    entry = Entry(
+        user_id=user.id,
+        type="Expense",
+        amount=2.50,
+        category="Bread",
+        date=date.today(),
+        description="I was very hungry",
+    )
 
     entry_repository.add_entry(entry)
 
@@ -80,8 +98,14 @@ def test_get_entry_id(session, entry_repository):
     session.add(user)
     session.commit()
 
-    entry = Entry(user_id=user.id, type="Income", amount=20, category="Sales",
-                  date=date.today(), description="")
+    entry = Entry(
+        user_id=user.id,
+        type="Income",
+        amount=20,
+        category="Sales",
+        date=date.today(),
+        description="",
+    )
 
     session.add(entry)
     session.commit()

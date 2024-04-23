@@ -16,10 +16,8 @@ class EntryForm(Toplevel):
         # Fields for Entry
         tk.Label(self, text="Type:").pack()
         self.type = tk.StringVar(value="Expense")
-        tk.Radiobutton(self, text="Expense", variable=self.type,
-                       value="Expense").pack()
-        tk.Radiobutton(self, text="Income", variable=self.type,
-                       value="Income").pack()
+        tk.Radiobutton(self, text="Expense", variable=self.type, value="Expense").pack()
+        tk.Radiobutton(self, text="Income", variable=self.type, value="Income").pack()
 
         tk.Label(self, text="Amount:").pack()
         self.amount = tk.Entry(self)
@@ -66,7 +64,8 @@ class EntryForm(Toplevel):
 
         try:
             self.entry_service.add_entry(
-                self.user_id, type, amount, category, date, description)
+                self.user_id, type, amount, category, date, description
+            )
             messagebox.showinfo("Success", "Entry added successfully")
 
             if self.on_entry_add:

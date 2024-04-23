@@ -19,8 +19,14 @@ def test_add_entry(session):
     session.add(user)
     session.commit()
 
-    entry = Entry(user_id=user.id, type="Expense", amount=2.50, category="Bread",
-                  date=date.today(), description="I was very hungry")
+    entry = Entry(
+        user_id=user.id,
+        type="Expense",
+        amount=2.50,
+        category="Bread",
+        date=date.today(),
+        description="I was very hungry",
+    )
     session.add(entry)
     session.commit()
 

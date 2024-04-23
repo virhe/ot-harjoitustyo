@@ -16,7 +16,9 @@ class UserService:
 
     def login(self, username, password):
         user = self.user_repository.find_user_name(username)
-        if user and bcrypt.checkpw(password.encode("utf-8"), user.password.encode("utf-8")):
+        if user and bcrypt.checkpw(
+            password.encode("utf-8"), user.password.encode("utf-8")
+        ):
             return user.id
 
         return None
@@ -27,7 +29,8 @@ class UserService:
 
         if len(username) < 3 or len(password) < 3:
             raise InvalidUsernameOrPassword(
-                "Username and password must be at least 3 characters long")
+                "Username and password must be at least 3 characters long"
+            )
 
         user = User(username=username, password=hash_pw(password))
         self.user_repository.add_user(user)

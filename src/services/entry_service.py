@@ -13,8 +13,14 @@ class EntryService:
         self.entry_repository = entry_repository
 
     def add_entry(self, user_id, entry_type, amount, category, date, description):
-        entry = Entry(user_id=user_id, type=entry_type, amount=amount,
-                      category=category, date=date, description=description)
+        entry = Entry(
+            user_id=user_id,
+            type=entry_type,
+            amount=amount,
+            category=category,
+            date=date,
+            description=description,
+        )
         self.entry_repository.add_entry(entry)
 
     # def delete_entry(self, entry_id):

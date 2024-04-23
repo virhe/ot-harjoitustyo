@@ -35,7 +35,13 @@ class MainWindow:
         # Fills the whole window with a treeview, with buttons at the bottom
         self.tree = ttk.Treeview(entry_tab)
         self.tree["columns"] = (
-            "ID", "Type", "Amount", "Category", "Date", "Description")
+            "ID",
+            "Type",
+            "Amount",
+            "Category",
+            "Date",
+            "Description",
+        )
         self.tree.column("#0", width=0, stretch=tk.NO)
         self.tree.column("ID", anchor=tk.W, width=40)
         self.tree.column("Type", anchor=tk.W, width=80)
@@ -55,8 +61,7 @@ class MainWindow:
         self.tree.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
         # Entry button
-        add_entry = tk.Button(entry_tab, text="Add Entry",
-                              command=self.entry_form)
+        add_entry = tk.Button(entry_tab, text="Add Entry", command=self.entry_form)
         add_entry.pack()
 
         self.refresh()
@@ -75,16 +80,29 @@ class MainWindow:
             self.years.set(self.years["values"][0])
 
         tk.Label(graph_tab, text="Month:").pack()
-        self.months = ttk.Combobox(graph_tab,
-                                   values=["January", "February", "March", "April", "May", "June", "July", "August",
-                                           "September", "October", "November", "December", ])
+        self.months = ttk.Combobox(
+            graph_tab,
+            values=[
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December",
+            ],
+        )
         self.months.pack()
 
         if self.months["values"]:
             self.months.set(self.months["values"][0])
 
-        update_button = tk.Button(
-            graph_tab, text="Update", command=self.update_graph)
+        update_button = tk.Button(graph_tab, text="Update", command=self.update_graph)
         update_button.pack()
 
     def entry_years(self):
@@ -110,13 +128,16 @@ class MainWindow:
 
         entries = self.entry_service.entries_by_user(self.user_id)
         entries_on_date = [
-            entry for entry in entries if entry.date.year == year and entry.date.month == month]
+            entry
+            for entry in entries
+            if entry.date.year == year and entry.date.month == month
+        ]
 
         self.plot_graph(entries_on_date)
 
     def plot_graph(self, entries):
         # ChatGPT generated line, had trouble with this.
-        entries_on_date = defaultdict(lambda: {'income': 0, 'expense': 0})
+        entries_on_date = defaultdict(lambda: {"income": 0, "expense": 0})
 
         for entry in entries:
             if entry.type == "Income":
@@ -125,8 +146,10 @@ class MainWindow:
                 entries_on_date[entry.date]["expense"] += entry.amount
 
         sorted_dates = sorted(entries_on_date.keys())
-        net = [entries_on_date[date]["income"] -
-               entries_on_date[date]["expense"] for date in sorted_dates]
+        net = [
+            entries_on_date[date]["income"] - entries_on_date[date]["expense"]
+            for date in sorted_dates
+        ]
 
         self.ax.clear()
         self.ax.set_title("Total Income/Expenses for Selected Month")
@@ -143,7 +166,9 @@ class MainWindow:
         self.canvas.draw()
 
     def entry_form(self):
-        EntryForm(self.root, self.entry_service, self.user_id, on_entry_add=self.on_entry_add)
+        EntryForm(
+            self.root, self.entry_service, self.user_id, on_entry_add=self.on_entry_add
+        )
 
     # Run when entry is successfully added
     # Update TreeView and graph
@@ -160,5 +185,15 @@ class MainWindow:
         # Once again, there is probably a way to fill the tree without a loop
         entries = self.entry_service.entries_by_user(self.user_id)
         for entry in entries:
-            self.tree.insert("", "end", values=(entry.id, entry.type, entry.amount,
-                                                entry.category, entry.date, entry.description))
+            self.tree.insert(
+                "",
+                "end",
+                values=(
+                    entry.id,
+                    entry.type,
+                    entry.amount,
+                    entry.category,
+                    entry.date,
+                    entry.description,
+                ),
+            )

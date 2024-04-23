@@ -35,4 +35,5 @@ def test_entries_by_user(entry_service, entry_repository):
     entry_service.entries_by_user(1)
     entry_repository.get_user_entries.assert_called_once_with(1)
 
+
 # TODO user_service tests
