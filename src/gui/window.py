@@ -1,8 +1,9 @@
 import tkinter as tk
-import matplotlib.pyplot as plt
+from collections import defaultdict
+
+import matplotlib.dates as mdates
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-
 
 from src.gui.entry_form import EntryForm
 from tkinter import ttk
@@ -14,7 +15,7 @@ class MainWindow:
         self.entry_service = entry_service
         self.user_id = user_id
         self.root.title("Depysit")
-        self.root.geometry("800x600")
+        self.root.geometry("800x800")
 
         self.create_ui()
 
@@ -64,9 +65,68 @@ class MainWindow:
         self.refresh()
 
     def create_graph_tab(self, graph_tab):
-        figure = Figure(figsize=(6, 6), dpi=100)
-        canvas = FigureCanvasTkAgg(figure, graph_tab)
-        canvas.get_tk_widget().pack()
+        self.figure = Figure(figsize=(6, 6), dpi=100)
+        self.ax = self.figure.add_subplot(111)
+        self.canvas = FigureCanvasTkAgg(self.figure, graph_tab)
+        self.canvas.get_tk_widget().pack()
+
+        tk.Label(graph_tab, text="Year:").pack()
+        self.years = ttk.Combobox(graph_tab, values=self.entry_years())
+        self.years.pack()
+
+        if self.years["values"]:
+            self.years.set(self.years["values"][0])
+
+        tk.Label(graph_tab, text="Month:").pack()
+        self.months = ttk.Combobox(graph_tab,
+                                   values=["January", "February", "March", "April", "May", "June", "July", "August",
+                                           "September", "October", "November", "December", ])
+        self.months.pack()
+
+        if self.months["values"]:
+            self.months.set(self.months["values"][0])
+
+        update_button = tk.Button(graph_tab, text="Update", command=self.update_graph)
+        update_button.pack()
+
+        self.update_graph()
+
+    def entry_years(self):
+        entries = self.entry_service.entries_by_user(self.user_id)
+        years = sorted({entry.date.year for entry in entries})
+        return years
+
+    def update_graph(self):
+        year = int(self.years.get())
+        month = self.months.current() + 1
+
+        entries = self.entry_service.entries_by_user(self.user_id)
+        entries_on_date = [entry for entry in entries if entry.date.year == year and entry.date.month == month]
+
+        self.plot_graph(entries_on_date)
+
+    def plot_graph(self, entries):
+        entries_on_date = defaultdict(float)
+        for entry in entries:
+            entries_on_date[entry.date] += entry.amount
+
+        sorted_dates = sorted(entries_on_date.keys())
+        amounts = [entries_on_date[date] for date in sorted_dates]
+
+        self.ax.clear()
+        self.ax.set_title("Total Income/Expenses for Selected Month")
+        self.ax.set_xlabel("Day")
+        self.ax.set_ylabel("Amount")
+
+        for date, amount in zip(sorted_dates, amounts):
+            self.ax.plot(date, amount, ".")
+            self.ax.annotate(amount, xy=(date, amount), xytext=(3, 3), textcoords="offset points")
+
+        self.ax.xaxis.set_major_locator(mdates.DayLocator(interval=1))
+        self.ax.xaxis.set_major_formatter(mdates.DateFormatter("%d"))
+        self.figure.autofmt_xdate()
+
+        self.canvas.draw()
 
     def entry_form(self):
         EntryForm(self.root, self.entry_service, self.user_id)
