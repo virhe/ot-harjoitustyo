@@ -27,4 +27,5 @@ The user can register and log in, add financial entries (income or expense), vie
 - [x] Graph of (monthly?) income vs expenses
 - [ ] Planning budget ahead, (salary + income - expenses) for the upcoming month
 - [ ] Graph view only shows months with entries
+- [ ] Entry deletion
 - [ ] Cloud syncing?
