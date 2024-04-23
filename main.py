@@ -1,5 +1,3 @@
-import os
-import sys
 import tkinter as tk
 
 from src.database import init_db, session
