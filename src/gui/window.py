@@ -24,7 +24,7 @@ class MainWindow:
         self.entry_service = entry_service
         self.user_id = user_id
         self.root.title("Depysit")
-        self.root.geometry("800x800")
+        self.root.geometry("1000x800")
 
         self.create_ui()
 
@@ -79,7 +79,7 @@ class MainWindow:
 
     # Responsible for the Graph tab
     def create_graph_tab(self, graph_tab):
-        self.figure = Figure(figsize=(6, 6), dpi=100)
+        self.figure = Figure(figsize=(10, 6), dpi=100)
         self.ax = self.figure.add_subplot(111)
         self.canvas = FigureCanvasTkAgg(self.figure, graph_tab)
         self.canvas.get_tk_widget().pack()
@@ -181,7 +181,14 @@ class MainWindow:
 
         for bar in bars:
             val = bar.get_height()
-            self.ax.text(bar.get_x() + bar.get_width() / 2, val, "%d" % val, ha="center")
+            self.ax.text(
+                bar.get_x() + bar.get_width() / 2,
+                val,
+                "%d" % val,
+                ha="center",
+                va="top",
+                rotation="vertical",
+            )
 
         self.canvas.draw()
 
