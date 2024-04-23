@@ -10,13 +10,6 @@ from src.repositories.user_repository import UserRepository
 from src.services.entry_service import EntryService
 from src.services.user_service import UserService
 
-# ChatGPT generated, had issues with the terminal after developing in PyCharm.
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-
-# pylint: disable=wrong-import-position
-# Hopefully a reasonable reason to disable the warning in this case
-
 
 def main():
     init_db()
