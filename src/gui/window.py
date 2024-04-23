@@ -10,6 +10,15 @@ from src.gui.entry_form import EntryForm
 
 
 class MainWindow:
+    """
+    Represents the main window.
+
+    Attributes:
+    - root: tkinter root window
+    - entry_service: EntryService instance
+    - user_id: current user id
+    """
+
     def __init__(self, root, entry_service, user_id):
         self.root = root
         self.entry_service = entry_service
@@ -19,6 +28,7 @@ class MainWindow:
 
         self.create_ui()
 
+    # Creates the main UI elements
     def create_ui(self):
         notebook = ttk.Notebook(self.root)
         entry_tab = ttk.Frame(notebook)
@@ -30,6 +40,7 @@ class MainWindow:
         self.create_entries_tab(entry_tab)
         self.create_graph_tab(graph_tab)
 
+    # Responsible for the Entries tab
     def create_entries_tab(self, entry_tab):
         # Has to be instance variable for entry_form() and refresh()
         # Fills the whole window with a treeview, with buttons at the bottom
@@ -66,6 +77,7 @@ class MainWindow:
 
         self.refresh()
 
+    # Responsible for the Graph tab
     def create_graph_tab(self, graph_tab):
         self.figure = Figure(figsize=(6, 6), dpi=100)
         self.ax = self.figure.add_subplot(111)
@@ -105,11 +117,13 @@ class MainWindow:
         update_button = tk.Button(graph_tab, text="Update", command=self.update_graph)
         update_button.pack()
 
+    # Return years with entries
     def entry_years(self):
         entries = self.entry_service.entries_by_user(self.user_id)
         years = sorted({entry.date.year for entry in entries})
         return years
 
+    # Update list of years with entries
     def update_years(self):
         years = self.entry_years()
         self.years["values"] = years
@@ -119,6 +133,7 @@ class MainWindow:
         else:
             self.years.set("")
 
+    # Updates the graph based on given month and year
     def update_graph(self):
         year = int(self.years.get())
         month = self.months.current() + 1
@@ -135,6 +150,7 @@ class MainWindow:
 
         self.plot_graph(entries_on_date)
 
+    # Plots the data
     def plot_graph(self, entries):
         # ChatGPT generated line, had trouble with this.
         entries_on_date = defaultdict(lambda: {"income": 0, "expense": 0})
@@ -165,6 +181,7 @@ class MainWindow:
 
         self.canvas.draw()
 
+    # Responsible for showing EntryForm when "Add Entry" is pressed
     def entry_form(self):
         EntryForm(
             self.root, self.entry_service, self.user_id, on_entry_add=self.on_entry_add
