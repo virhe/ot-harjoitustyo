@@ -28,7 +28,4 @@ class EntryRepository:
 
     def get_user_entries(self, user_id):
         query = self.session.query(Entry).filter_by(user_id=user_id).all()
-        if query is None:
-            return []
-
         return query
