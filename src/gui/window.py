@@ -145,10 +145,13 @@ class MainWindow:
     def entry_form(self):
         EntryForm(self.root, self.entry_service, self.user_id, on_entry_add=self.on_entry_add)
 
+    # Run when entry is successfully added
+    # Update TreeView and graph
     def on_entry_add(self):
         self.refresh()
         self.update_years()
 
+    # Update TreeView
     def refresh(self):
         # There might be a better way?
         for entry in self.tree.get_children():
