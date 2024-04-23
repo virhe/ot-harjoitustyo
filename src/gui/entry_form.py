@@ -49,6 +49,7 @@ class EntryForm(Toplevel):
             messagebox.showerror("Error", "Date must be in the DD-MM-YYYY format.")
             return
 
+        # Optional, no validation needed
         description = self.description.get()
 
         try:
