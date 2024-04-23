@@ -15,15 +15,16 @@ are still implemented e.g for use within families.
 The user interface consists of various windows, so the user can always see the main window if needed.
 The login/registration window has shared fields for username and password. The main window consists of a treeview,
 showing
-the user's transactions.
+the user's transactions, and a graph view with information on net values of entries on a given month.
 
 ## Functionality offered by the first iteration
 
-The user can register and log in, add income or expenses (not separated yet) and view these transactions on the main
-window.
+The user can register and log in, add financial entries (income or expense), view previous entries in a list, as well as view the net value of entries for days in a given month.
 
 ## Further development ideas
 
-- Toggle between adding income or expense
-- Graph of (monthly?) income vs expenses
-- Planning budget ahead, (salary + income - expenses) for the upcoming month 
+- [x] Toggle between adding income or expense
+- [x] Graph of (monthly?) income vs expenses
+- [ ] Planning budget ahead, (salary + income - expenses) for the upcoming month
+- [ ] Graph view only shows months with entries
+- [ ] Cloud syncing?

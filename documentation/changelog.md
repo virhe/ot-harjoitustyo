@@ -10,3 +10,12 @@ the topic, which is why this changelog will be incomplete for this week.
 - The user can view previous entries
 - Added full tests for entities
 - Added partial tests for repositories
+
+## Week 5:
+
+- The user now sees updated entry list immediately upon adding a new entry
+- The user gets better error messages from bad or missing inputs
+- The user can now choose between income and expense for each entry
+- The user can view the net value of their entries (income - expense) on each day for a given month by choosing a year and month
+- Added full tests for repositories
+- Added partial tests for services

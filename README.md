@@ -1,6 +1,10 @@
 # Ohjelmistotekniikka, harjoitustyö
 
 ### Exercises and project for the course "Intermediate Studies Project: Software Development Methods" - University of Helsinki
+## Depysit
+
+This software is made for tracking personal finances, while providing a nice view of incomes - expenses to help with budgeting.
+Multiple users are supported, so this would work great in a family setting for example.
 
 ### Documentation
 
