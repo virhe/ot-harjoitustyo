@@ -15,8 +15,10 @@ class EntryForm(Toplevel):
         # Fields for Entry
         tk.Label(self, text="Type:").pack()
         self.type = tk.StringVar(value="Expense")
-        tk.Radiobutton(self, text="Expense", variable=self.type, value="Expense").pack()
-        tk.Radiobutton(self, text="Income", variable=self.type, value="Income").pack()
+        tk.Radiobutton(self, text="Expense", variable=self.type,
+                       value="Expense").pack()
+        tk.Radiobutton(self, text="Income", variable=self.type,
+                       value="Income").pack()
 
         tk.Label(self, text="Amount:").pack()
         self.amount = tk.Entry(self)
