@@ -1,6 +1,7 @@
 from datetime import date
-from src.entities.user import User
+
 from src.entities.entry import Entry
+from src.entities.user import User
 
 
 def test_add_user(session):

@@ -20,4 +20,5 @@ gui: ComboForm
 gui: EntryForm
 ```
 
-This is roughly how the different areas of the code interact with eachother. Note that this is not a standard class diagram!
+This is roughly how the different areas of the code interact with eachother. Note that this is not a standard class
+diagram!

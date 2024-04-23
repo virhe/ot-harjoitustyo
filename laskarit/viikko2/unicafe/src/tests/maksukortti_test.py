@@ -1,5 +1,7 @@
 import unittest
+
 from maksukortti import Maksukortti
+
 
 class TestMaksukortti(unittest.TestCase):
     def setUp(self):
@@ -20,7 +22,7 @@ class TestMaksukortti(unittest.TestCase):
         self.maksukortti.ota_rahaa(200)
 
         self.assertEqual(self.maksukortti.saldo_euroina(), 8)
-    
+
     def test_saldo_ei_negatiivinen(self):
         self.maksukortti.ota_rahaa(1200)
 

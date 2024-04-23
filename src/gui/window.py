@@ -1,12 +1,12 @@
 import tkinter as tk
 from collections import defaultdict
+from tkinter import ttk
 
 import matplotlib.dates as mdates
-from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
 
 from src.gui.entry_form import EntryForm
-from tkinter import ttk
 
 
 class MainWindow:

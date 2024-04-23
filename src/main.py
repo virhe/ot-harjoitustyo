@@ -1,16 +1,18 @@
-from src.database import init_db, session
-from src.services.entry_service import EntryService
-from src.services.user_service import UserService
-from src.repositories.user_repository import UserRepository
-from src.repositories.entry_repository import EntryRepository
-from src.gui.window import MainWindow
-from src.gui.form import ComboForm
-import tkinter as tk
 import os
 import sys
+import tkinter as tk
+
+from src.database import init_db, session
+from src.gui.form import ComboForm
+from src.gui.window import MainWindow
+from src.repositories.entry_repository import EntryRepository
+from src.repositories.user_repository import UserRepository
+from src.services.entry_service import EntryService
+from src.services.user_service import UserService
 
 # ChatGPT generated, had issues with the terminal after developing in PyCharm.
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 
 # pylint: disable=wrong-import-position
 # Hopefully a reasonable reason to disable the warning in this case

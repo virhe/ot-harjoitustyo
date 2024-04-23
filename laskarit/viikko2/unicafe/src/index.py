@@ -1,5 +1,5 @@
-from maksukortti import Maksukortti
 from kassapaate import Kassapaate
+from maksukortti import Maksukortti
 
 
 def main():

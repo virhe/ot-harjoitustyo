@@ -1,10 +1,9 @@
 from datetime import date
 
-from src.entities.user import User
 from src.entities.entry import Entry
-
-from src.repositories.user_repository import UserRepository
+from src.entities.user import User
 from src.repositories.entry_repository import EntryRepository
+from src.repositories.user_repository import UserRepository
 
 
 def test_user_repository_add(session):

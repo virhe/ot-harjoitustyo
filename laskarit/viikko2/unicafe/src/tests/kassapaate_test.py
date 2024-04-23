@@ -1,12 +1,14 @@
 import unittest
+
 from kassapaate import Kassapaate
 from maksukortti import Maksukortti
+
 
 class TestKassapaate(unittest.TestCase):
     def setUp(self):
         self.kassapaate = Kassapaate()
         self.kortti = Maksukortti(1000)
-    
+
     def test_kassapaate_alkuarvot(self):
         self.assertEqual(self.kassapaate.kassassa_rahaa_euroina(), 1000)
         self.assertEqual(self.kassapaate.edulliset, 0)
@@ -16,7 +18,7 @@ class TestKassapaate(unittest.TestCase):
         self.kassapaate.syo_maukkaasti_kateisella(600)
 
         self.assertEqual(self.kassapaate.kassassa_rahaa_euroina(), 1004)
-    
+
     def test_kateisosto_vaihtoraha(self):
         self.assertEqual(self.kassapaate.syo_maukkaasti_kateisella(600), 200)
 
@@ -32,7 +34,7 @@ class TestKassapaate(unittest.TestCase):
         self.kassapaate.syo_maukkaasti_kateisella(200)
 
         self.assertEqual(self.kassapaate.kassassa_rahaa_euroina(), 1000)
-    
+
     def test_kateisosto_vaara_palautus(self):
         self.assertEqual(self.kassapaate.syo_maukkaasti_kateisella(200), 200)
 
@@ -56,8 +58,6 @@ class TestKassapaate(unittest.TestCase):
 
     def test_korttiosto_true(self):
         self.assertEqual(self.kassapaate.syo_maukkaasti_kortilla(self.kortti), True)
-        
-
 
     def test_korttiosto_lounaiden_maara_nousee(self):
         self.kassapaate.syo_maukkaasti_kortilla(self.kortti)
@@ -85,7 +85,7 @@ class TestKassapaate(unittest.TestCase):
         self.kassapaate.syo_maukkaasti_kortilla(self.kortti)
 
         self.assertEqual(self.kassapaate.maukkaat, 0)
-    
+
     def test_kassa_rahamaara_ei_muutu(self):
         self.kassapaate.syo_maukkaasti_kortilla(self.kortti)
 
@@ -96,6 +96,6 @@ class TestKassapaate(unittest.TestCase):
 
         self.assertEqual(self.kassapaate.kassassa_rahaa_euroina(), 1001)
         self.assertEqual(self.kortti.saldo_euroina(), 11)
-    
+
     def test_negatiivinen_rahan_lataaminen_rahamaara(self):
         self.assertEqual(self.kassapaate.lataa_rahaa_kortille(self.kortti, -100), None)
