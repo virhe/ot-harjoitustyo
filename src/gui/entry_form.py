@@ -5,12 +5,13 @@ from tkcalendar import DateEntry
 
 
 class EntryForm(Toplevel):
-    def __init__(self, root, entry_service, user_id):
+    def __init__(self, root, entry_service, user_id, on_entry_add=None):
         super().__init__(root)
         self.entry_service = entry_service
         self.user_id = user_id
         self.title("Add Entry")
         self.geometry("400x400")
+        self.on_entry_add = on_entry_add
 
         # Fields for Entry
         tk.Label(self, text="Type:").pack()
@@ -67,6 +68,10 @@ class EntryForm(Toplevel):
             self.entry_service.add_entry(
                 self.user_id, type, amount, category, date, description)
             messagebox.showinfo("Success", "Entry added successfully")
+
+            if self.on_entry_add:
+                self.on_entry_add()
+
             self.destroy()
             # pylint WOULD complain about this, but gui is omitted :)
         except Exception as e:

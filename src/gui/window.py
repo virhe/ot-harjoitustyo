@@ -59,11 +59,6 @@ class MainWindow:
                               command=self.entry_form)
         add_entry.pack()
 
-        # Refresh button
-        refresh_button = tk.Button(
-            entry_tab, text="Refresh", command=self.refresh)
-        refresh_button.pack()
-
         self.refresh()
 
     def create_graph_tab(self, graph_tab):
@@ -97,9 +92,21 @@ class MainWindow:
         years = sorted({entry.date.year for entry in entries})
         return years
 
+    def update_years(self):
+        years = self.entry_years()
+        self.years["values"] = years
+
+        if years:
+            self.years.set(years[0])
+        else:
+            self.years.set("")
+
     def update_graph(self):
         year = int(self.years.get())
         month = self.months.current() + 1
+
+        if not year:
+            return
 
         entries = self.entry_service.entries_by_user(self.user_id)
         entries_on_date = [
@@ -136,7 +143,11 @@ class MainWindow:
         self.canvas.draw()
 
     def entry_form(self):
-        EntryForm(self.root, self.entry_service, self.user_id)
+        EntryForm(self.root, self.entry_service, self.user_id, on_entry_add=self.on_entry_add)
+
+    def on_entry_add(self):
+        self.refresh()
+        self.update_years()
 
     def refresh(self):
         # There might be a better way?
