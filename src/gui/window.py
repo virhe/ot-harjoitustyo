@@ -1,4 +1,8 @@
 import tkinter as tk
+import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
 
 from src.gui.entry_form import EntryForm
 from tkinter import ttk
@@ -15,11 +19,20 @@ class MainWindow:
         self.create_ui()
 
     def create_ui(self):
-        tk.Label(self.root, text="Welcome to Depysit").pack()
+        notebook = ttk.Notebook(self.root)
+        entry_tab = ttk.Frame(notebook)
+        graph_tab = ttk.Frame(notebook)
+        notebook.add(entry_tab, text="Entries")
+        notebook.add(graph_tab, text="Graph")
+        notebook.pack(fill="both", expand=True)
 
+        self.create_entries_tab(entry_tab)
+        self.create_graph_tab(graph_tab)
+
+    def create_entries_tab(self, entry_tab):
         # Has to be instance variable for entry_form() and refresh()
         # Fills the whole window with a treeview, with buttons at the bottom
-        self.tree = ttk.Treeview(self.root)
+        self.tree = ttk.Treeview(entry_tab)
         self.tree["columns"] = (
             "ID", "Amount", "Category", "Date", "Description")
         self.tree.column("#0", width=0, stretch=tk.NO)
@@ -39,16 +52,21 @@ class MainWindow:
         self.tree.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
         # Entry button
-        add_entry = tk.Button(self.root, text="Add Entry",
+        add_entry = tk.Button(entry_tab, text="Add Entry",
                               command=self.entry_form)
         add_entry.pack()
 
         # Refresh button
         refresh_button = tk.Button(
-            self.root, text="Refresh", command=self.refresh)
+            entry_tab, text="Refresh", command=self.refresh)
         refresh_button.pack()
 
         self.refresh()
+
+    def create_graph_tab(self, graph_tab):
+        figure = Figure(figsize=(6, 6), dpi=100)
+        canvas = FigureCanvasTkAgg(figure, graph_tab)
+        canvas.get_tk_widget().pack()
 
     def entry_form(self):
         EntryForm(self.root, self.entry_service, self.user_id)
