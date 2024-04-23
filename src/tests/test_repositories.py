@@ -8,6 +8,7 @@ from src.repositories.entry_repository import EntryRepository
 from src.repositories.user_repository import UserRepository
 
 
+# Fixtures
 @pytest.fixture
 def entry_repository(session):
     return EntryRepository(session)
@@ -26,6 +27,59 @@ def test_user_repository_add(session, user_repository):
     assert user.id is not None
 
 
+# -----
+
+
+# EntryRepository
+def test_entry_repository_add(session, entry_repository):
+    user = User(username="entryreponame", password="entryrepopass")
+
+    session.add(user)
+    session.commit()
+
+    entry = Entry(
+        user_id=user.id,
+        type="Expense",
+        amount=2.50,
+        category="Bread",
+        date=date.today(),
+        description="I was very hungry",
+    )
+
+    entry_repository.add_entry(entry)
+
+    assert entry.id is not None
+    assert entry.user == user
+
+
+def test_get_entry_id(session, entry_repository):
+    user = User(username="entryreponame", password="entryrepopass")
+
+    session.add(user)
+    session.commit()
+
+    entry = Entry(
+        user_id=user.id,
+        type="Income",
+        amount=20,
+        category="Sales",
+        date=date.today(),
+        description="",
+    )
+
+    session.add(entry)
+    session.commit()
+
+    test_entry = entry_repository.get_entry_id(entry.id)
+
+    assert test_entry is not None
+    assert test_entry.id == entry.id
+
+
+# -----
+
+
+# UserRepository
 def test_get_user_entries(session, entry_repository):
     user = User(username="testuserreponame", password="entryrepopass")
 
@@ -71,46 +125,4 @@ def test_find_user_name(session, user_repository):
     assert result.username == user.username
 
 
-def test_entry_repository_add(session, entry_repository):
-    user = User(username="entryreponame", password="entryrepopass")
-
-    session.add(user)
-    session.commit()
-
-    entry = Entry(
-        user_id=user.id,
-        type="Expense",
-        amount=2.50,
-        category="Bread",
-        date=date.today(),
-        description="I was very hungry",
-    )
-
-    entry_repository.add_entry(entry)
-
-    assert entry.id is not None
-    assert entry.user == user
-
-
-def test_get_entry_id(session, entry_repository):
-    user = User(username="entryreponame", password="entryrepopass")
-
-    session.add(user)
-    session.commit()
-
-    entry = Entry(
-        user_id=user.id,
-        type="Income",
-        amount=20,
-        category="Sales",
-        date=date.today(),
-        description="",
-    )
-
-    session.add(entry)
-    session.commit()
-
-    test_entry = entry_repository.get_entry_id(entry.id)
-
-    assert test_entry is not None
-    assert test_entry.id == entry.id
+# -----

@@ -4,15 +4,7 @@ from src.entities.entry import Entry
 from src.entities.user import User
 
 
-def test_add_user(session):
-    user = User(username="testusername", password="testpassword")
-
-    session.add(user)
-    session.commit()
-
-    assert user.id is not None
-
-
+# Entry
 def test_add_entry(session):
     user = User(username="entryusername", password="entrypassword")
 
@@ -32,3 +24,19 @@ def test_add_entry(session):
 
     assert entry.id is not None
     assert entry.user == user
+
+
+# -----
+
+
+# User
+def test_add_user(session):
+    user = User(username="testusername", password="testpassword")
+
+    session.add(user)
+    session.commit()
+
+    assert user.id is not None
+
+
+# -----
