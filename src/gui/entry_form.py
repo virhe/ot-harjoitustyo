@@ -45,9 +45,9 @@ class EntryForm(Toplevel):
             return
 
         try:
-            date = datetime.strptime(self.date.get(), "%d-%m-%Y").date()
+            date = self.date.get_date()
         except ValueError:
-            messagebox.showerror("Error", "Date must be in the DD-MM-YYYY format.")
+            messagebox.showerror("Error", "Select a date.")
             return
 
         # Optional, no validation needed
