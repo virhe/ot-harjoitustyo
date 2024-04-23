@@ -168,7 +168,7 @@ class MainWindow:
         ]
 
         self.ax.clear()
-        self.ax.set_title("Total Income/Expenses for Selected Month")
+        self.ax.set_title("Net Finances on Given Month")
         self.ax.set_xlabel("Day")
         self.ax.set_ylabel("Amount")
 
