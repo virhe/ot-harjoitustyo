@@ -17,8 +17,8 @@ class EntryService:
                       category=category, date=date, description=description)
         self.entry_repository.add_entry(entry)
 
-    def delete_entry(self, entry_id):
-        self.entry_repository.delete_entry(entry_id)
+    # def delete_entry(self, entry_id):
+    #     self.entry_repository.delete_entry(entry_id)
 
     def entries_by_user(self, user_id):
         return self.entry_repository.get_user_entries(user_id)
