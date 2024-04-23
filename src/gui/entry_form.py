@@ -1,6 +1,7 @@
 import tkinter as tk
 from datetime import datetime
 from tkinter import Toplevel, messagebox
+from tkcalendar import DateEntry
 
 
 class EntryForm(Toplevel):
@@ -20,8 +21,8 @@ class EntryForm(Toplevel):
         self.category = tk.Entry(self)
         self.category.pack()
 
-        tk.Label(self, text="Date (DD-MM-YYYY):").pack()
-        self.date = tk.Entry(self)
+        tk.Label(self, text="Date:").pack()
+        self.date = DateEntry(self, date_pattern="dd-mm-yyyy")
         self.date.pack()
 
         tk.Label(self, text="Description:").pack()
