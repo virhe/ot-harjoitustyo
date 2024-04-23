@@ -38,4 +38,5 @@ def test_add_user(session):
 
     assert user.id is not None
 
+
 # -----
