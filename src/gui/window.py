@@ -1,7 +1,7 @@
 import tkinter as tk
 
 from src.gui.entry_form import EntryForm
-from tkinter import ttk, messagebox
+from tkinter import ttk
 
 
 class MainWindow:
