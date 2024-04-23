@@ -13,6 +13,11 @@ class EntryForm(Toplevel):
         self.geometry("400x400")
 
         # Fields for Entry
+        tk.Label(self, text="Type:").pack()
+        self.type = tk.StringVar(value="Expense")
+        tk.Radiobutton(self, text="Expense", variable=self.type, value="Expense").pack()
+        tk.Radiobutton(self, text="Income", variable=self.type, value="Income").pack()
+
         tk.Label(self, text="Amount:").pack()
         self.amount = tk.Entry(self)
         self.amount.pack()
@@ -33,6 +38,9 @@ class EntryForm(Toplevel):
         submit.pack()
 
     def submit(self):
+        # Default value, no validation needed
+        type = self.type.get()
+
         try:
             amount = float(self.amount.get())
         except ValueError:
@@ -55,7 +63,7 @@ class EntryForm(Toplevel):
 
         try:
             self.entry_service.add_entry(
-                self.user_id, amount, category, date, description)
+                self.user_id, type, amount, category, date, description)
             messagebox.showinfo("Success", "Entry added successfully")
             self.destroy()
             # pylint WOULD complain about this, but gui is omitted :)

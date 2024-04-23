@@ -12,8 +12,8 @@ class EntryService:
     def __init__(self, entry_repository):
         self.entry_repository = entry_repository
 
-    def add_entry(self, user_id, amount, category, date, description):
-        entry = Entry(user_id=user_id, amount=amount,
+    def add_entry(self, user_id, type, amount, category, date, description):
+        entry = Entry(user_id=user_id, type=type, amount=amount,
                       category=category, date=date, description=description)
         self.entry_repository.add_entry(entry)
 
