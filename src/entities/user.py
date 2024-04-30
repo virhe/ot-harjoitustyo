@@ -6,12 +6,14 @@ from .base import Base
 
 class User(Base):
     """
-    Represents a user.
+    Represents a user
 
-    Fields:
-    - id (Integer)
-    - username (String)
-    - password (String)
+    Attributes
+        id: Integer, unique identifier
+        username: String, username of the user
+        password: String, password of the user
+
+    A relationship between "User" and "Entry" is also created
     """
 
     __tablename__ = "users"
