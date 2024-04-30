@@ -36,8 +36,14 @@ class EntryService:
         )
         self.entry_repository.add_entry(entry)
 
-    # def delete_entry(self, entry_id):
-    #     self.entry_repository.delete_entry(entry_id)
+    def delete_entry(self, entry_id):
+        """Deletes an entry by id
+
+        Args:
+            entry_id: id of the entry to be deleted
+        """
+
+        self.entry_repository.delete_entry(entry_id)
 
     def entries_by_user(self, user_id):
         """Returns all entries by given user id
