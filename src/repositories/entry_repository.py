@@ -2,19 +2,25 @@ from src.entities.entry import Entry
 
 
 class EntryRepository:
-    """
-    Responsible for database operations related to the Entry class.
-
-    Attributes:
-        session (sqlalchemy.orm.Session): SQLAlchemy ORM Session object.
-                                            Mostly used to make testing easier.
+    """Responsible for database operations related to the Entry class.
     """
 
     def __init__(self, session):
+        """Constructor
+
+        Args:
+            session: sqlalchemy session
+        """
+
         self.session = session
 
-    # Adds entry to database
     def add_entry(self, entry):
+        """Adds a new entry to the database
+
+        Args:
+            entry: Entry instance
+        """
+
         self.session.add(entry)
         self.session.commit()
 
@@ -23,12 +29,28 @@ class EntryRepository:
     #     self.session.delete(entry)
     #     self.session.commit()
 
-    # Get entry by entry_id
     def get_entry_id(self, entry_id):
+        """Returns the entry with the given id
+
+        Args:
+            entry_id: id of the entry to be returned
+
+        Returns:
+            The entry with the given id
+        """
+
         entry = self.session.query(Entry).filter_by(id=entry_id).first()
         return entry
 
-    # Get entries by a given user_id
     def get_user_entries(self, user_id):
+        """Returns the user entries for the given user_id
+
+        Args:
+            user_id: id of the user whose entries to return
+
+        Returns:
+            The user entries for the given user_id
+        """
+        
         query = self.session.query(Entry).filter_by(user_id=user_id).all()
         return query
