@@ -46,6 +46,6 @@ class UserRepository:
         Returns:
             user: User instance of the user with the given username
         """
-        
+
         user = self.session.query(User).filter_by(username=username).first()
         return user
