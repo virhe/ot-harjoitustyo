@@ -5,18 +5,17 @@ from tkcalendar import DateEntry
 
 
 class EntryForm(Toplevel):
-    """
-    Represents a form for adding entries
-
-    Attributes:
-    - entry_service = EntryService instance
-    - user_id = user id of current user
-    - on_entry_add = used to call on_entry_add() in window.py on successfully adding new entry
+    """Represents a form for adding entries
     """
 
     def __init__(self, root, entry_service, user_id, on_entry_add=None):
-        """
-        Constructor responsible for creating an instance of EntryForm
+        """Constructor
+
+        Args:
+            root: tkinter root
+            entry_service: entry_service instance
+            user_id: id of the current user
+            on_entry_add: callback function for adding a new entry
         """
 
         super().__init__(root)
@@ -52,9 +51,7 @@ class EntryForm(Toplevel):
         submit.pack()
 
     def submit(self):
-        """
-        Method responsible for validating form info, as well as
-        calling the on_entry_add method upon successfully adding new entry
+        """Validates form info, and calls on_entry_add on success
         """
 
         # Has a default value, no validation needed
