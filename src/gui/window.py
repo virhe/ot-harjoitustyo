@@ -80,11 +80,26 @@ class MainWindow:
 
         self.tree.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
-        # Entry button
+        # Add Entry button
         add_entry = tk.Button(entry_tab, text="Add Entry", command=self.entry_form)
         add_entry.pack()
 
+        # Delete Entry button
+        delete_entry = tk.Button(entry_tab, text="Delete Entry", command=self.delete_entry)
+        delete_entry.pack()
+
         self.refresh()
+
+    def delete_entry(self):
+        """Deletes selected entry from the TreeView
+        """
+
+        entry = self.tree.selection()
+        if entry:
+            entry_id = self.tree.item(entry)["values"][0]
+            self.tree.delete(entry)
+            self.entry_service.delete_entry(entry_id)
+            self.refresh()
 
     def create_graph_tab(self, graph_tab):
         """Creates the graph tab
