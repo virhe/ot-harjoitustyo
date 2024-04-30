@@ -2,8 +2,7 @@ from src.entities.entry import Entry
 
 
 class EntryRepository:
-    """Responsible for database operations related to the Entry class.
-    """
+    """Responsible for database operations related to the Entry class."""
 
     def __init__(self, session):
         """Constructor

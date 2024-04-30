@@ -4,8 +4,7 @@ from tkinter import Toplevel, messagebox
 
 
 class ComboForm(Toplevel):
-    """Represents a login/register form.
-    """
+    """Represents a login/register form."""
 
     def __init__(self, root, user_service, success):
         """Constructor
@@ -39,8 +38,7 @@ class ComboForm(Toplevel):
         register_button.pack()
 
     def login(self):
-        """Responsible for logging a user in
-        """
+        """Responsible for logging a user in"""
 
         username = self.username.get()
         password = self.password.get()

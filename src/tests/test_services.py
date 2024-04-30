@@ -4,7 +4,11 @@ import bcrypt
 import pytest
 
 from src.services.entry_service import EntryService
-from src.services.user_service import UserService, UsernameTakenError, InvalidUsernameOrPassword
+from src.services.user_service import (
+    UserService,
+    UsernameTakenError,
+    InvalidUsernameOrPassword,
+)
 from src.entities.user import User
 
 
@@ -53,15 +57,23 @@ def test_delete_entry(entry_service, entry_repository):
 
 # UserService
 def test_login(user_service, user_repository):
-    password = bcrypt.hashpw("loginpass".encode("utf-8"), bcrypt.gensalt()).decode('utf-8')
-    user_repository.find_user_name.return_value = User(id=1, username="loginuser", password=password)
+    password = bcrypt.hashpw("loginpass".encode("utf-8"), bcrypt.gensalt()).decode(
+        "utf-8"
+    )
+    user_repository.find_user_name.return_value = User(
+        id=1, username="loginuser", password=password
+    )
 
     assert user_service.login("loginuser", "loginpass") == 1
 
 
 def test_wrong_login(user_service, user_repository):
-    password = bcrypt.hashpw("loginpass".encode("utf-8"), bcrypt.gensalt()).decode('utf-8')
-    user_repository.find_user_name.return_value = User(id=1, username="loginuser", password=password)
+    password = bcrypt.hashpw("loginpass".encode("utf-8"), bcrypt.gensalt()).decode(
+        "utf-8"
+    )
+    user_repository.find_user_name.return_value = User(
+        id=1, username="loginuser", password=password
+    )
 
     assert user_service.login("loginuser", "incorrectloginpass") is None
 
@@ -74,7 +86,9 @@ def test_register(user_service, user_repository):
 
 
 def test_register_username_taken(user_service, user_repository):
-    user_repository.find_user_name.return_value = User(id=1, username="takenname", password="takenpass")
+    user_repository.find_user_name.return_value = User(
+        id=1, username="takenname", password="takenpass"
+    )
 
     with pytest.raises(UsernameTakenError):
         user_service.register("takenname", "takenpass")

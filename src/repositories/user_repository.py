@@ -2,8 +2,7 @@ from src.entities.user import User
 
 
 class UserRepository:
-    """Responsible for database operations related to the User class
-    """
+    """Responsible for database operations related to the User class"""
 
     def __init__(self, session):
         """Constructor

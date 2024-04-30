@@ -10,8 +10,7 @@ from src.gui.entry_form import EntryForm
 
 
 class MainWindow:
-    """Represents the application main window
-    """
+    """Represents the application main window"""
 
     def __init__(self, root, entry_service, user_id):
         """Constructor
@@ -31,8 +30,7 @@ class MainWindow:
         self.create_ui()
 
     def create_ui(self):
-        """Creates the main ui elements
-        """
+        """Creates the main ui elements"""
 
         notebook = ttk.Notebook(self.root)
         entry_tab = ttk.Frame(notebook)
@@ -85,14 +83,15 @@ class MainWindow:
         add_entry.pack()
 
         # Delete Entry button
-        delete_entry = tk.Button(entry_tab, text="Delete Entry", command=self.delete_entry)
+        delete_entry = tk.Button(
+            entry_tab, text="Delete Entry", command=self.delete_entry
+        )
         delete_entry.pack()
 
         self.refresh()
 
     def delete_entry(self):
-        """Deletes selected entry from the TreeView
-        """
+        """Deletes selected entry from the TreeView"""
 
         entry = self.tree.selection()
         if entry:
@@ -158,8 +157,7 @@ class MainWindow:
         return years
 
     def update_years(self):
-        """Updates the year combobox
-        """
+        """Updates the year combobox"""
 
         years = self.entry_years()
         self.years["values"] = years
@@ -170,8 +168,7 @@ class MainWindow:
             self.years.set("")
 
     def update_graph(self):
-        """Updates the graph
-        """
+        """Updates the graph"""
 
         year = int(self.years.get())
         month = self.months.current() + 1
@@ -242,23 +239,20 @@ class MainWindow:
         self.canvas.draw()
 
     def entry_form(self):
-        """Shows EntryForm when "Add Entry" is clicked
-        """
+        """Shows EntryForm when "Add Entry" is clicked"""
 
         EntryForm(
             self.root, self.entry_service, self.user_id, on_entry_add=self.on_entry_add
         )
 
     def on_entry_add(self):
-        """Updates TreeView and graph when entry is successfully added
-        """
+        """Updates TreeView and graph when entry is successfully added"""
 
         self.refresh()
         self.update_years()
 
     def refresh(self):
-        """Updates TreeView
-        """
+        """Updates TreeView"""
 
         # There might be a better way?
         for entry in self.tree.get_children():

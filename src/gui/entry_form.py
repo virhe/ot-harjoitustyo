@@ -5,8 +5,7 @@ from tkcalendar import DateEntry
 
 
 class EntryForm(Toplevel):
-    """Represents a form for adding entries
-    """
+    """Represents a form for adding entries"""
 
     def __init__(self, root, entry_service, user_id, on_entry_add=None):
         """Constructor

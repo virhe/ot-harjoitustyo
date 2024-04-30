@@ -162,4 +162,5 @@ def test_find_user_name(session, user_repository):
     assert result is not None
     assert result.username == user.username
 
+
 # -----

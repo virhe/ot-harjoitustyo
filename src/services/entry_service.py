@@ -2,8 +2,7 @@ from src.entities.entry import Entry
 
 
 class EntryService:
-    """Responsible for the logic related to entries
-    """
+    """Responsible for the logic related to entries"""
 
     def __init__(self, entry_repository):
         """Constructor
