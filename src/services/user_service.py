@@ -83,7 +83,7 @@ class UsernameTakenError(Exception):
     """Custom exception for when a username is taken
     """
 
-    
+
 class InvalidUsernameOrPassword(Exception):
     """Custom exception for when a username or password is under 3 characters long
     """
