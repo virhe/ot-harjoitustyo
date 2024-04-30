@@ -52,6 +52,10 @@ class EntryForm(Toplevel):
 
     def submit(self):
         """Validates form info, and calls on_entry_add on success
+
+        Raises:
+            ValueError: if amount is not an integer, or a date is not chosen
+            Exception: if an entry is not successfully added
         """
 
         # Has a default value, no validation needed
