@@ -68,6 +68,44 @@ def test_get_entry_id(session, entry_repository):
     assert test_entry.id == entry.id
 
 
+def test_entry_delete(session, entry_repository):
+    user = User(username="deletionname", password="deletionpass")
+
+    session.add(user)
+    session.commit()
+
+    entry = Entry(
+        user_id=user.id,
+        type="Expense",
+        amount=3,
+        category="Pepsi",
+        date=date.today(),
+        description="I was very thirsty",
+    )
+
+    entry_repository.add_entry(entry)
+    entry_repository.delete_entry(entry.id)
+
+    test_entry = entry_repository.get_entry_id(entry.id)
+    assert test_entry is None
+
+
+def test_entry_delete_invalid(session, entry_repository):
+    user = User(username="deletionname", password="deletionpass")
+
+    session.add(user)
+    session.commit()
+
+    try:
+        entry_repository.delete_entry(1337)
+        # If no error is raised
+        success = True
+    except Exception:
+        success = False
+
+    assert success
+
+
 # -----
 
 
@@ -123,6 +161,5 @@ def test_find_user_name(session, user_repository):
     result = user_repository.find_user_name(user.username)
     assert result is not None
     assert result.username == user.username
-
 
 # -----
