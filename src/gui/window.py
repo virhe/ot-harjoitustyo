@@ -10,18 +10,16 @@ from src.gui.entry_form import EntryForm
 
 
 class MainWindow:
-    """
-    Represents the main window.
-
-    Attributes:
-    - root: Tkinter root window
-    - entry_service: EntryService instance
-    - user_id: current user id
+    """Represents the application main window
     """
 
     def __init__(self, root, entry_service, user_id):
-        """
-        Constructor responsible for creating the main window
+        """Constructor
+
+        Args:
+            root: tkinter root
+            entry_service: entry_service instance
+            user_id: user_id of the current user
         """
 
         self.root = root
@@ -33,8 +31,7 @@ class MainWindow:
         self.create_ui()
 
     def create_ui(self):
-        """
-        Method responsible for creating the main ui elements
+        """Creates the main ui elements
         """
 
         notebook = ttk.Notebook(self.root)
@@ -48,8 +45,10 @@ class MainWindow:
         self.create_graph_tab(graph_tab)
 
     def create_entries_tab(self, entry_tab):
-        """
-        Method responsible for creating the entries tab
+        """Creates the entries tab
+
+        Args:
+            entry_tab: tkinter Frame
         """
 
         # Has to be instance variable for entry_form() and refresh()
@@ -88,8 +87,10 @@ class MainWindow:
         self.refresh()
 
     def create_graph_tab(self, graph_tab):
-        """
-        Method responsible for creating the graph tab
+        """Creates the graph tab
+
+        Args:
+            graph_tab: tkinter Frame
         """
 
         self.figure = Figure(figsize=(10, 6), dpi=100)
@@ -131,8 +132,10 @@ class MainWindow:
         update_button.pack()
 
     def entry_years(self):
-        """
-        Returns all years with entries
+        """Returns all years with entries
+
+        Returns:
+            years: list of years
         """
 
         entries = self.entry_service.entries_by_user(self.user_id)
@@ -140,9 +143,9 @@ class MainWindow:
         return years
 
     def update_years(self):
+        """Updates the year combobox
         """
-        Updates the year combobox
-        """
+
         years = self.entry_years()
         self.years["values"] = years
 
@@ -152,8 +155,7 @@ class MainWindow:
             self.years.set("")
 
     def update_graph(self):
-        """
-        Updates the graph
+        """Updates the graph
         """
 
         year = int(self.years.get())
@@ -172,8 +174,10 @@ class MainWindow:
         self.plot_graph(entries_on_date)
 
     def plot_graph(self, entries):
-        """
-        Plots the data on the graph
+        """Plots the data on the graph
+
+        Args:
+            entries: list of entries to graph
         """
 
         # ChatGPT generated line, had trouble with this.
@@ -223,8 +227,7 @@ class MainWindow:
         self.canvas.draw()
 
     def entry_form(self):
-        """
-        Shows EntryForm when "Add Entry" is clicked
+        """Shows EntryForm when "Add Entry" is clicked
         """
 
         EntryForm(
@@ -232,16 +235,14 @@ class MainWindow:
         )
 
     def on_entry_add(self):
-        """
-        Updates TreeView and graph when entry is successfully added
+        """Updates TreeView and graph when entry is successfully added
         """
 
         self.refresh()
         self.update_years()
 
     def refresh(self):
-        """
-        Updates TreeView
+        """Updates TreeView
         """
 
         # There might be a better way?
