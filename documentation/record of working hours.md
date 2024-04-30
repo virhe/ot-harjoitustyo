@@ -8,9 +8,9 @@
 | 22.4  |  2   |                                          Reading documentation, planning                                           |
 | 23.4  |  10  |                                Graph view, improved error messages, income/expense                                 |
 | 29.4  |  1   |                                                      Planning                                                      |
-| 30.4  |  3   |                                 Created docstrings, new tests and deletion feature                                 |
+| 30.4  |  5   |                                 Created docstrings, new tests and deletion feature                                 |
 |       |      |                                                                                                                    |
 |       |      |                                                                                                                    |
 |       |      |                                                                                                                    |
 |       |      |                                                                                                                    |
-| total |  32  |                                                                                                                    | 
+| total |  34  |                                                                                                                    | 
