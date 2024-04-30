@@ -24,10 +24,17 @@ class EntryRepository:
         self.session.add(entry)
         self.session.commit()
 
-    # def delete_entry(self, entry_id):
-    #     entry = self.get_entry_id(entry_id)
-    #     self.session.delete(entry)
-    #     self.session.commit()
+    def delete_entry(self, entry_id):
+        """Deletes an entry from the database
+
+        Args:
+            entry_id: id of the entry to be deleted
+        """
+
+        entry = self.get_entry_id(entry_id)
+        if entry:
+            self.session.delete(entry)
+            self.session.commit()
 
     def get_entry_id(self, entry_id):
         """Returns the entry with the given id
