@@ -37,7 +37,7 @@ class UserService:
         user = User(username=username, password=hash_pw(password))
         self.user_repository.add_user(user)
 
-        return user.id
+        return self.user_repository.add_user(user)
 
 
 # Hashes the password

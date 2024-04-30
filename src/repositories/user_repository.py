@@ -17,6 +17,7 @@ class UserRepository:
     def add_user(self, user):
         self.session.add(user)
         self.session.commit()
+        return user.id
 
     # def delete_user(self, user_id):
     #     user = self.find_user_id(user_id)
