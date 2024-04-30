@@ -5,8 +5,7 @@ from .base import Base
 
 
 class User(Base):
-    """
-    Represents a user
+    """Represents a user
 
     Attributes
         id: Integer, unique identifier
