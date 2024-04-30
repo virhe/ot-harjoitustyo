@@ -43,6 +43,11 @@ def test_entries_by_user(entry_service, entry_repository):
     entry_repository.get_user_entries.assert_called_once_with(1)
 
 
+def test_delete_entry(entry_service, entry_repository):
+    entry_service.delete_entry(1)
+    entry_repository.delete_entry.assert_called_once_with(1)
+
+
 # -----
 
 
