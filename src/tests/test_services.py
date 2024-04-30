@@ -3,13 +3,13 @@ from unittest.mock import MagicMock
 import bcrypt
 import pytest
 
+from src.entities.user import User
 from src.services.entry_service import EntryService
 from src.services.user_service import (
     UserService,
     UsernameTakenError,
     InvalidUsernameOrPassword,
 )
-from src.entities.user import User
 
 
 # Fixtures
@@ -99,6 +99,5 @@ def test_register_bad_input(user_service, user_repository):
 
     with pytest.raises(InvalidUsernameOrPassword):
         user_service.register("a", "b")
-
 
 # -----
