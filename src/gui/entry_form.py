@@ -15,6 +15,10 @@ class EntryForm(Toplevel):
     """
 
     def __init__(self, root, entry_service, user_id, on_entry_add=None):
+        """
+        Constructor responsible for creating an instance of EntryForm
+        """
+
         super().__init__(root)
         self.entry_service = entry_service
         self.user_id = user_id
@@ -47,8 +51,12 @@ class EntryForm(Toplevel):
         submit = tk.Button(self, text="Submit", command=self.submit)
         submit.pack()
 
-    # Handles submitting the values
     def submit(self):
+        """
+        Method responsible for validating form info, as well as
+        calling the on_entry_add method upon successfully adding new entry
+        """
+
         # Has a default value, no validation needed
         type = self.type.get()
 
