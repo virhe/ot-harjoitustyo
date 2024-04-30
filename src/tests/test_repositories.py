@@ -19,14 +19,6 @@ def user_repository(session):
     return UserRepository(session)
 
 
-def test_user_repository_add(session, user_repository):
-    user = User(username="testuserreponame", password="testuserrepopass")
-
-    user_repository.add_user(user)
-
-    assert user.id is not None
-
-
 # -----
 
 
@@ -80,6 +72,14 @@ def test_get_entry_id(session, entry_repository):
 
 
 # UserRepository
+def test_user_repository_add(session, user_repository):
+    user = User(username="testuserreponame", password="testuserrepopass")
+
+    user_repository.add_user(user)
+
+    assert user.id is not None
+
+
 def test_get_user_entries(session, entry_repository):
     user = User(username="testuserreponame", password="entryrepopass")
 
