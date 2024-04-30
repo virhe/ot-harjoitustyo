@@ -27,3 +27,4 @@ The user can register and log in, add financial entries (income or expense), vie
 - [x] Graph of (monthly?) income vs expenses
 - [ ] Planning budget ahead, (salary + income - expenses) for the upcoming month
 - [x] Entry deletion
+- [ ] Category combobox, with the ability to add more categories
