@@ -13,6 +13,10 @@ class ComboForm(Toplevel):
     """
 
     def __init__(self, root, user_service, success):
+        """
+        Constructor responsible for creating a new login/register form
+        """
+
         super().__init__(root)
         self.user_service = user_service
         self.title("Login/Register")
@@ -35,8 +39,11 @@ class ComboForm(Toplevel):
         register_button = tk.Button(self, text="Register", command=self.register)
         register_button.pack()
 
-    # Handles logging in
     def login(self):
+        """
+        Method responsible for logging user in.
+        """
+
         username = self.username.get()
         password = self.password.get()
 
@@ -49,8 +56,11 @@ class ComboForm(Toplevel):
         else:
             messagebox.showerror("Login Failed", "Invalid Username or Password.")
 
-    # Handles registering
     def register(self):
+        """
+        Method responsible for registering a new user
+        """
+
         username = self.username.get()
         password = self.password.get()
 
