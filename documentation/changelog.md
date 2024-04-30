@@ -19,3 +19,9 @@ the topic, which is why this changelog will be incomplete for this week.
 - The user can view the net value of their entries (income - expense) on each day for a given month by choosing a year and month
 - Added full tests for repositories
 - Added partial tests for services
+
+## Week 6:
+
+- The user can now delete entries
+- Added docstrings to most files
+- Finalized and updated tests for repositories and services
