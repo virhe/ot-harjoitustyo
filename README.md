@@ -8,6 +8,7 @@ Multiple users are supported, so this would work great in a family setting for e
 
 ### Documentation
 
+- [Guide](./documentation/guide.md)
 - [Requirement specification](./documentation/requirement%20specification.md)
 - [Record of working hours](./documentation/record%20of%20working%20hours.md)
 - [Changelog](./documentation/changelog.md)
