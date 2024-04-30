@@ -20,6 +20,10 @@ class MainWindow:
     """
 
     def __init__(self, root, entry_service, user_id):
+        """
+        Constructor responsible for creating the main window
+        """
+
         self.root = root
         self.entry_service = entry_service
         self.user_id = user_id
@@ -28,8 +32,11 @@ class MainWindow:
 
         self.create_ui()
 
-    # Creates the main UI elements
     def create_ui(self):
+        """
+        Method responsible for creating the main ui elements
+        """
+
         notebook = ttk.Notebook(self.root)
         entry_tab = ttk.Frame(notebook)
         graph_tab = ttk.Frame(notebook)
@@ -40,8 +47,11 @@ class MainWindow:
         self.create_entries_tab(entry_tab)
         self.create_graph_tab(graph_tab)
 
-    # Responsible for the Entries tab
     def create_entries_tab(self, entry_tab):
+        """
+        Method responsible for creating the entries tab
+        """
+
         # Has to be instance variable for entry_form() and refresh()
         # Fills the whole window with a treeview, with buttons at the bottom
         self.tree = ttk.Treeview(entry_tab)
@@ -77,8 +87,11 @@ class MainWindow:
 
         self.refresh()
 
-    # Responsible for the Graph tab
     def create_graph_tab(self, graph_tab):
+        """
+        Method responsible for creating the graph tab
+        """
+
         self.figure = Figure(figsize=(10, 6), dpi=100)
         self.ax = self.figure.add_subplot(111)
         self.canvas = FigureCanvasTkAgg(self.figure, graph_tab)
@@ -117,14 +130,19 @@ class MainWindow:
         update_button = tk.Button(graph_tab, text="Update", command=self.update_graph)
         update_button.pack()
 
-    # Return years with entries
     def entry_years(self):
+        """
+        Returns all years with entries
+        """
+
         entries = self.entry_service.entries_by_user(self.user_id)
         years = sorted({entry.date.year for entry in entries})
         return years
 
-    # Update list of years with entries
     def update_years(self):
+        """
+        Updates the year combobox
+        """
         years = self.entry_years()
         self.years["values"] = years
 
@@ -133,8 +151,11 @@ class MainWindow:
         else:
             self.years.set("")
 
-    # Updates the graph based on given month and year
     def update_graph(self):
+        """
+        Updates the graph
+        """
+
         year = int(self.years.get())
         month = self.months.current() + 1
 
@@ -150,8 +171,11 @@ class MainWindow:
 
         self.plot_graph(entries_on_date)
 
-    # Plots the data
     def plot_graph(self, entries):
+        """
+        Plots the data on the graph
+        """
+
         # ChatGPT generated line, had trouble with this.
         entries_on_date = defaultdict(lambda: {"income": 0, "expense": 0})
 
@@ -198,20 +222,28 @@ class MainWindow:
 
         self.canvas.draw()
 
-    # Responsible for showing EntryForm when "Add Entry" is pressed
     def entry_form(self):
+        """
+        Shows EntryForm when "Add Entry" is clicked
+        """
+
         EntryForm(
             self.root, self.entry_service, self.user_id, on_entry_add=self.on_entry_add
         )
 
-    # Run when entry is successfully added
-    # Update TreeView and graph
     def on_entry_add(self):
+        """
+        Updates TreeView and graph when entry is successfully added
+        """
+
         self.refresh()
         self.update_years()
 
-    # Update TreeView
     def refresh(self):
+        """
+        Updates TreeView
+        """
+
         # There might be a better way?
         for entry in self.tree.get_children():
             self.tree.delete(entry)
