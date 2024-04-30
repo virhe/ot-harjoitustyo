@@ -51,6 +51,6 @@ class EntryRepository:
         Returns:
             The user entries for the given user_id
         """
-        
+
         query = self.session.query(Entry).filter_by(user_id=user_id).all()
         return query
