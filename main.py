@@ -1,8 +1,8 @@
 import tkinter as tk
 
 from src.database import init_db, session
-from src.gui.form import ComboForm
-from src.gui.window import MainWindow
+from src.gui.combo_form import ComboForm
+from src.gui.main_window import MainWindow
 from src.repositories.entry_repository import EntryRepository
 from src.repositories.user_repository import UserRepository
 from src.services.entry_service import EntryService
