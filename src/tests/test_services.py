@@ -100,4 +100,5 @@ def test_register_bad_input(user_service, user_repository):
     with pytest.raises(InvalidUsernameOrPassword):
         user_service.register("a", "b")
 
+
 # -----
