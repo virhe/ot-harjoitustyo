@@ -29,7 +29,7 @@ class UserService:
 
         user = self.user_repository.find_user_name(username)
         if user and bcrypt.checkpw(
-                password.encode("utf-8"), user.password.encode("utf-8")
+            password.encode("utf-8"), user.password.encode("utf-8")
         ):
             return user.id
 
