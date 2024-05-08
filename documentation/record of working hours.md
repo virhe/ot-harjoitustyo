@@ -9,8 +9,8 @@
 | 23.4  |  10  |                                Graph view, improved error messages, income/expense                                 |
 | 29.4  |  1   |                                                      Planning                                                      |
 | 30.4  |  5   |                                 Created docstrings, new tests and deletion feature                                 |
+|  8.5  | 0.5  |                                                  Cleaning up code                                                  |
 |       |      |                                                                                                                    |
 |       |      |                                                                                                                    |
 |       |      |                                                                                                                    |
-|       |      |                                                                                                                    |
-| total |  34  |                                                                                                                    | 
+| total | 34.5 |                                                                                                                    | 
