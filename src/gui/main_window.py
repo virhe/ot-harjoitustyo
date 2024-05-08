@@ -12,6 +12,7 @@ from src.gui.entry_form import EntryForm
 class MainWindow:
     """Represents the application main window"""
 
+    # MAIN SECTION
     def __init__(self, root, entry_service, user_id):
         """Constructor
 
@@ -42,6 +43,9 @@ class MainWindow:
         self.create_entries_tab(entry_tab)
         self.create_graph_tab(graph_tab)
 
+    # -----
+
+    # ENTRY SECTION
     def create_entries_tab(self, entry_tab):
         """Creates the entries tab
 
@@ -90,6 +94,13 @@ class MainWindow:
 
         self.refresh()
 
+    def entry_form(self):
+        """Shows EntryForm when "Add Entry" is clicked"""
+
+        EntryForm(
+            self.root, self.entry_service, self.user_id, on_entry_add=self.on_entry_add
+        )
+
     def delete_entry(self):
         """Deletes selected entry from the TreeView"""
 
@@ -100,6 +111,38 @@ class MainWindow:
             self.entry_service.delete_entry(entry_id)
             self.refresh()
 
+    def on_entry_add(self):
+        """Updates TreeView and graph when entry is successfully added"""
+
+        self.refresh()
+        self.update_years()
+
+    def refresh(self):
+        """Updates TreeView"""
+
+        # There might be a better way?
+        for entry in self.tree.get_children():
+            self.tree.delete(entry)
+
+        # Once again, there is probably a way to fill the tree without a loop
+        entries = self.entry_service.entries_by_user(self.user_id)
+        for entry in entries:
+            self.tree.insert(
+                "",
+                "end",
+                values=(
+                    entry.id,
+                    entry.type,
+                    entry.amount,
+                    entry.category,
+                    entry.date,
+                    entry.description,
+                ),
+            )
+
+    # -----
+
+    # GRAPH SECTION
     def create_graph_tab(self, graph_tab):
         """Creates the graph tab
 
@@ -144,46 +187,6 @@ class MainWindow:
 
         update_button = tk.Button(graph_tab, text="Update", command=self.update_graph)
         update_button.pack()
-
-    def entry_years(self):
-        """Returns all years with entries
-
-        Returns:
-            years: list of years
-        """
-
-        entries = self.entry_service.entries_by_user(self.user_id)
-        years = sorted({entry.date.year for entry in entries})
-        return years
-
-    def update_years(self):
-        """Updates the year combobox"""
-
-        years = self.entry_years()
-        self.years["values"] = years
-
-        if years:
-            self.years.set(years[0])
-        else:
-            self.years.set("")
-
-    def update_graph(self):
-        """Updates the graph"""
-
-        year = int(self.years.get())
-        month = self.months.current() + 1
-
-        if not year:
-            return
-
-        entries = self.entry_service.entries_by_user(self.user_id)
-        entries_on_date = [
-            entry
-            for entry in entries
-            if entry.date.year == year and entry.date.month == month
-        ]
-
-        self.plot_graph(entries_on_date)
 
     def plot_graph(self, entries):
         """Plots the data on the graph
@@ -238,38 +241,44 @@ class MainWindow:
 
         self.canvas.draw()
 
-    def entry_form(self):
-        """Shows EntryForm when "Add Entry" is clicked"""
+    def entry_years(self):
+        """Returns all years with entries
 
-        EntryForm(
-            self.root, self.entry_service, self.user_id, on_entry_add=self.on_entry_add
-        )
+        Returns:
+            years: list of years
+        """
 
-    def on_entry_add(self):
-        """Updates TreeView and graph when entry is successfully added"""
-
-        self.refresh()
-        self.update_years()
-
-    def refresh(self):
-        """Updates TreeView"""
-
-        # There might be a better way?
-        for entry in self.tree.get_children():
-            self.tree.delete(entry)
-
-        # Once again, there is probably a way to fill the tree without a loop
         entries = self.entry_service.entries_by_user(self.user_id)
-        for entry in entries:
-            self.tree.insert(
-                "",
-                "end",
-                values=(
-                    entry.id,
-                    entry.type,
-                    entry.amount,
-                    entry.category,
-                    entry.date,
-                    entry.description,
-                ),
-            )
+        years = sorted({entry.date.year for entry in entries})
+        return years
+
+    def update_years(self):
+        """Updates the year combobox"""
+
+        years = self.entry_years()
+        self.years["values"] = years
+
+        if years:
+            self.years.set(years[0])
+        else:
+            self.years.set("")
+
+    def update_graph(self):
+        """Updates the graph"""
+
+        year = int(self.years.get())
+        month = self.months.current() + 1
+
+        if not year:
+            return
+
+        entries = self.entry_service.entries_by_user(self.user_id)
+        entries_on_date = [
+            entry
+            for entry in entries
+            if entry.date.year == year and entry.date.month == month
+        ]
+
+        self.plot_graph(entries_on_date)
+
+    # -----
