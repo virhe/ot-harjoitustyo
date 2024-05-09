@@ -19,13 +19,10 @@ the user's transactions, and a graph view with information on net values of entr
 
 ## Functionality offered by the first iteration
 
-The user can register and log in, add financial entries (income or expense), view previous entries in a list, as well as view the net value of entries for days in a given month.
+The user can register and log in, add and delete financial entries (income or expense), view previous entries in a list, as well as view the net value of entries for days in a given month.
 
 ## Further development ideas
 
-- [x] Toggle between adding income or expense
-- [x] Graph of (monthly?) income vs expenses
-- [x] Entry deletion
 - [ ] Planning budget ahead, (salary + income - expenses) for the upcoming month
 - [ ] Category combobox, with the ability to add more categories
 - [ ] Logging out
