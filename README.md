@@ -13,6 +13,7 @@ Multiple users are supported, so this would work great in a family setting for e
 - [Record of working hours](./documentation/record%20of%20working%20hours.md)
 - [Changelog](./documentation/changelog.md)
 - [Architecture](./documentation/architecture.md)
+- [Testing](./documentation/tests.md)
 
 ### Installation
 
