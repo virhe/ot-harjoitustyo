@@ -27,15 +27,6 @@ class UserRepository:
         self.session.commit()
         return user.id
 
-    # def delete_user(self, user_id):
-    #     user = self.find_user_id(user_id)
-    #     self.session.delete(user)
-    #     self.session.commit()
-
-    # def find_user_id(self, user_id):
-    #     user = self.session.query(User).filter_by(id=user_id).first()
-    #     return user
-
     def find_user_name(self, username):
         """Returns user with given username
 
