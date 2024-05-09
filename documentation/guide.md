@@ -1,6 +1,7 @@
 # Guide
 
-Download the latest release by clicking one of the options [here](https://github.com/virhe/ot-harjoitustyo/releases)
+Download the latest release by clicking one of the options [here](https://github.com/virhe/ot-harjoitustyo/releases). Unzip the folder and open a console
+in the project root folder.
 
 ## Config
 

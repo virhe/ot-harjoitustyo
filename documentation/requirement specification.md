@@ -2,7 +2,7 @@
 
 ## The purpose of the software
 
-The software allows users to track their budget, taking into account their salary, various incomes and expenses.
+The software allows users to track their finances, taking into account their various incomes and expenses.
 Each user has their separate account that they can access with the login/registration window.
 
 ### Users
@@ -25,6 +25,8 @@ The user can register and log in, add financial entries (income or expense), vie
 
 - [x] Toggle between adding income or expense
 - [x] Graph of (monthly?) income vs expenses
-- [ ] Planning budget ahead, (salary + income - expenses) for the upcoming month
 - [x] Entry deletion
+- [ ] Planning budget ahead, (salary + income - expenses) for the upcoming month
 - [ ] Category combobox, with the ability to add more categories
+- [ ] Logging out
+- [ ] Column sorting

@@ -25,3 +25,9 @@ the topic, which is why this changelog will be incomplete for this week.
 - The user can now delete entries
 - Added docstrings to most files
 - Finalized and updated tests for repositories and services
+
+## Week 7:
+
+- Cleaned up code
+- Finished tests
+- Finalized documentation
